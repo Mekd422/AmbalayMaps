@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { ArrowUpRight, CheckCircle2, XCircle } from "lucide-react"
+import { ArrowUpRight, CheckCircle2, XCircle, Quote } from "lucide-react"
 import videoIcon from "../assets/icons/video-icon.svg"
 import Footer from "../Components/layout/Footer"
 import Navbar from "../Components/layout/Navbar"
@@ -24,12 +24,12 @@ import placesIcon from "../assets/icons/search.svg"
 import matrixIcon from "../assets/icons/matrix-api.svg"
 import elevationIcon from "../assets/icons/elevation-api.svg"
 
-
 import logo from "../assets/icons/download.svg"
 
 export default function Home() {
   const previewRef = useRef<HTMLElement | null>(null)
   const [previewProgress, setPreviewProgress] = useState(0)
+  const [isYearly, setIsYearly] = useState(false)
 
   useEffect(() => {
     const el = previewRef.current
@@ -91,6 +91,18 @@ export default function Home() {
       desc: "Get terrain elevation data for any point on Earth. Access accurate elevation data for route planning and visualization.",
       icon: elevationIcon,
     },
+  ]
+
+  const row1 = [
+    { name: "Enkumichael", role: "Independent Developer", text: "Ambalay Maps' APIs were easy to integrate and greatly improved my app's speed and accuracy.", img: person1 },
+    { name: "Samson Warkaye", role: "GIS Specialist", text: "Ambalay Maps provided reliable geospatial data and training that helped our teams collect data effectively.", img: person2 },
+    { name: "Marco G.", role: "Founder", text: "It's the only mapping tool I open daily — and actually enjoy using.", img: person3 },
+  ]
+
+  const row2 = [
+    { name: "Sara L.", role: "Product Manager", text: "The routing precision is unmatched. We saved hours on logistics planning.", img: person2 },
+    { name: "Jonas W.", role: "CEO", text: "Finally a mapping service with transparent pricing and top-tier support.", img: person1 },
+    { name: "Alex K.", role: "Lead Engineer", text: "The static maps API is so easy to customize. Perfect for our reports.", img: person3 },
   ]
 
   return (
@@ -173,7 +185,6 @@ export default function Home() {
       {/* Comprehensive Mapping Solutions */}
       <section className="px-6 md:px-12 py-24 bg-black">
         <div className="max-w-5xl mx-auto">
-          {/* Header Row */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
             <h2 className="text-4xl md:text-5xl font-medium text-white leading-tight max-w-md">
               Comprehensive Mapping Solutions.
@@ -183,7 +194,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Top Row: Two Large Cards */}
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div className="group rounded-[32px] bg-[#0A0A0A] border border-white/5 p-4 flex flex-col h-full">
               <div className="relative rounded-[24px] bg-[#111] flex items-center justify-center overflow-hidden aspect-[4/3] mb-6">
@@ -212,9 +222,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Bottom Grid: The Tweak to build your specific design */}
           <div className="grid md:grid-cols-3 gap-6">
-            {/* Spending Breakdown Card */}
             <div className="rounded-[32px] bg-[#0A0A0A] border border-white/5 p-4 flex flex-col">
               <div className="relative rounded-[24px] bg-[#111] aspect-square flex items-center justify-center overflow-hidden mb-8">
                 <img src={spendingImg} alt="Spending" className="w-[85%] h-auto object-contain" />
@@ -225,7 +233,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Savings Goal Card */}
             <div className="rounded-[32px] bg-[#0A0A0A] border border-white/5 p-4 flex flex-col">
               <div className="relative rounded-[24px] bg-[#111] aspect-square flex items-center justify-center overflow-hidden mb-8">
                 <img src={savingsImg} alt="Savings" className="w-[85%] h-auto object-contain" />
@@ -236,9 +243,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Column Stack */}
             <div className="flex flex-col gap-6">
-              {/* Trusted By Card */}
               <div className="bg-[#0A0A0A] rounded-[32px] border border-white/5 p-8 flex-1 flex flex-col justify-center">
                 <div className="flex items-center -space-x-3 mb-6">
                   <img src={person1} className="h-12 w-12 rounded-full border-4 border-[#0A0A0A] object-cover" />
@@ -250,7 +255,6 @@ export default function Home() {
                 </h4>
               </div>
 
-              {/* Saved Card */}
               <div className="bg-[#0A0A0A] rounded-[32px] border border-white/5 p-8 flex-1 flex flex-col justify-center">
                 <h4 className="text-3xl font-medium text-white mb-3">$1.2M+ Saved</h4>
                 <p className="text-sm text-gray-500 mb-6 leading-relaxed max-w-[200px]">
@@ -266,8 +270,7 @@ export default function Home() {
         </div>
       </section>
 
-
-      {/* Detailed Features Section (Clarity & Money Decisions) */}
+      {/* Detailed Features Section */}
       <section className="px-6 md:px-12 py-24 bg-black border-t border-white/5">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
@@ -276,7 +279,7 @@ export default function Home() {
               <span className="text-xs font-medium uppercase tracking-[0.2em]">Features</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight leading-tight">
-              Designed for clarity, built for <br className="hidden md:block" /> better money decisions
+              Designed for clarity, built for <br className="hidden md:block" /> better mapping solutions
             </h2>
           </div>
 
@@ -303,7 +306,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why AmbaLay Maps Section (Comparison Section) */}
+      {/* Comparison Section */}
       <section className="px-6 md:px-12 py-24 bg-black overflow-hidden">
         <div className="max-w-5xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 text-[#8cff2e] mb-6">
@@ -311,23 +314,15 @@ export default function Home() {
             <span className="text-xs font-medium uppercase tracking-[0.2em]">Why AmbaLay Maps?</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight leading-tight mb-20">
-            There’s a smarter way to <br className="hidden md:block" /> manage money
+            There’s a smarter way to <br className="hidden md:block" /> handle geography
           </h2>
 
-          {/* Comparison Card */}
           <div className="relative max-w-4xl mx-auto rounded-[40px] border border-white/10 bg-[#0A0A0A] overflow-hidden">
             <div className="grid md:grid-cols-2">
-              {/* Left Side: Other Tools */}
               <div className="p-10 md:p-14 text-left border-b md:border-b-0 md:border-r border-white/5">
                 <h3 className="text-gray-500 text-xs font-semibold uppercase tracking-widest mb-10">Other Tools</h3>
                 <ul className="space-y-6">
-                  {[
-                    "Messy spreadsheets, manual tracking",
-                    "Complicated pricing, hidden fees",
-                    "Limited automation, manual workflows",
-                    "No team collaboration",
-                    "Generic support, slow replies"
-                  ].map((text, i) => (
+                  {["Messy spreadsheets, manual tracking", "Complicated pricing, hidden fees", "Limited automation, manual workflows", "No team collaboration", "Generic support, slow replies"].map((text, i) => (
                     <li key={i} className="flex items-start gap-4 text-gray-500 text-sm">
                       <XCircle size={18} className="mt-0.5 text-orange-500/60 shrink-0" />
                       <span>{text}</span>
@@ -336,26 +331,16 @@ export default function Home() {
                 </ul>
               </div>
 
-              {/* Right Side: AmbaLay/Clario */}
               <div className="p-10 md:p-14 text-left bg-gradient-to-br from-white/[0.03] to-transparent relative group">
-                {/* Glow Effect */}
                 <div className="absolute inset-0 border-2 border-[#8cff2e]/20 rounded-[40px] pointer-events-none" />
-                
                 <div className="flex items-center gap-3 mb-10">
                   <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center overflow-hidden">
                     <img src={logo} alt="Company Logo" className="w-5 h-5 object-contain" />
                   </div>
-                  <h3 className="text-white text-lg font-medium">Clario</h3>
+                  <h3 className="text-white text-lg font-medium">Ambalay</h3>
                 </div>
-
                 <ul className="space-y-6">
-                  {[
-                    "Smart dashboard, real-time updates",
-                    "Simple, transparent pricing",
-                    "Automated reports & smart alerts",
-                    "Team-friendly, sync accounts easily",
-                    "Priority support, fast response"
-                  ].map((text, i) => (
+                  {["Smart dashboard, real-time updates", "Simple, transparent pricing", "Automated reports & smart alerts", "Team-friendly, sync accounts easily", "Priority support, fast response"].map((text, i) => (
                     <li key={i} className="flex items-start gap-4 text-white text-sm">
                       <CheckCircle2 size={18} className="mt-0.5 text-[#8cff2e] shrink-0" />
                       <span>{text}</span>
@@ -368,30 +353,123 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Section */}
-      <section className="px-6 md:px-12 py-20 bg-black">
+      {/* Testimonial Section */}
+      <section className="px-6 md:px-12 py-24 bg-black overflow-hidden">
         <div className="max-w-5xl mx-auto">
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-medium text-white mb-4">Why AmbaLay Maps?</h2>
-            <p className="text-gray-400">There's a smarter way to manage money</p>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+            <h2 className="text-4xl md:text-5xl font-medium text-white leading-tight max-w-md">
+              Loved by individuals and small teams
+            </h2>
+            <p className="text-lg text-gray-400 max-w-sm">
+              Trusted mapping solutions that empower developers to build precise location-based experiences.
+            </p>
           </div>
-          <div className="bg-[#0A0A0A] rounded-[32px] border border-white/5 overflow-hidden grid md:grid-cols-2">
-            <div className="p-10 border-b md:border-b-0 md:border-r border-white/5">
-              <h3 className="text-gray-500 font-medium mb-8 uppercase tracking-wider text-xs">Other Tools</h3>
-              <ul className="space-y-4 text-gray-500 text-sm">
-                <li>✕ Messy spreadsheets, manual tracking</li>
-                <li>✕ Complicated pricing, hidden fees</li>
-                <li>✕ Limited automation</li>
-                <li>✕ No team collaboration</li>
+
+          <div className="relative flex flex-col gap-8">
+            <div className="relative overflow-hidden">
+              <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black to-transparent z-10" />
+              <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black to-transparent z-10" />
+              <div className="flex gap-6 animate-marquee-left whitespace-nowrap">
+                {[...row1, ...row1].map((t, i) => (
+                  <div key={i} className="inline-block w-[300px] md:w-[400px] bg-[#0A0A0A] border border-white/5 rounded-[32px] p-8 whitespace-normal">
+                    <Quote className="text-[#8cff2e]/10 mb-4" size={24} />
+                    <p className="text-white text-sm md:text-base mb-6 leading-relaxed">"{t.text}"</p>
+                    <div className="flex items-center gap-3">
+                      <img src={t.img} className="h-9 w-9 rounded-full object-cover grayscale" />
+                      <div>
+                        <h5 className="text-white text-sm font-medium">{t.name}</h5>
+                        <p className="text-gray-500 text-[10px]">{t.role}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative overflow-hidden">
+              <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black to-transparent z-10" />
+              <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black to-transparent z-10" />
+              <div className="flex gap-6 animate-marquee-right whitespace-nowrap">
+                {[...row2, ...row2].map((t, i) => (
+                  <div key={i} className="inline-block w-[300px] md:w-[400px] bg-[#0A0A0A] border border-white/5 rounded-[32px] p-8 whitespace-normal">
+                    <Quote className="text-[#8cff2e]/10 mb-4" size={24} />
+                    <p className="text-white text-sm md:text-base mb-6 leading-relaxed">"{t.text}"</p>
+                    <div className="flex items-center gap-3">
+                      <img src={t.img} className="h-9 w-9 rounded-full object-cover grayscale" />
+                      <div>
+                        <h5 className="text-white text-sm font-medium">{t.name}</h5>
+                        <p className="text-gray-500 text-[10px]">{t.role}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NEW PRICING SECTION */}
+      <section className="px-6 md:px-12 py-24 bg-black">
+        <div className="max-w-5xl mx-auto text-center">
+          <span className="label text-[#8cff2e]">• Pricing</span>
+          <h2 className="text-5xl md:text-6xl font-medium text-white mb-4">Simple plans.</h2>
+          <p className="text-gray-400 mb-12">Straightforward pricing with no hidden costs. Everything <br className="hidden md:block"/> you need to manage your mapping needs.</p>
+          
+          <div className="flex items-center justify-center gap-4 mb-16">
+            <span className={`text-sm ${!isYearly ? 'text-[#8cff2e]' : 'text-gray-500'}`}>Monthly</span>
+            <button 
+              onClick={() => setIsYearly(!isYearly)}
+              className="w-12 h-6 rounded-full bg-white/10 relative p-1 transition-colors"
+            >
+              <div className={`w-4 h-4 rounded-full bg-[#8cff2e] transition-transform ${isYearly ? 'translate-x-6' : 'translate-x-0'}`} />
+            </button>
+            <span className={`text-sm ${isYearly ? 'text-[#8cff2e]' : 'text-gray-500'}`}>Yearly</span>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left">
+            {/* Starter Plan */}
+            <div className="bg-[#0A0A0A] border border-white/5 rounded-[32px] p-10 flex flex-col">
+              <h3 className="text-2xl font-medium text-white mb-6">Starter</h3>
+              <div className="flex items-baseline gap-1 mb-6">
+                <span className="text-5xl font-medium text-white">{isYearly ? "$290" : "$29"}</span>
+                <span className="text-gray-500">/{isYearly ? 'year' : 'month'}</span>
+              </div>
+              <p className="text-gray-400 text-sm mb-10 leading-relaxed">
+                Perfect for freelancers and small projects who want full control over their mapping features.
+              </p>
+              <button className="w-full py-4 bg-white/5 border border-white/10 text-white rounded-full font-medium mb-10 flex items-center justify-center gap-2 hover:bg-white/10 transition-all">
+                Get Started <ArrowUpRight size={18} />
+              </button>
+              <ul className="space-y-4">
+                {["10,000 requests/mo", "Standard Support", "Core API Access", "Monthly reports"].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-sm text-gray-300">
+                    <CheckCircle2 size={18} className="text-gray-500" /> {item}
+                  </li>
+                ))}
               </ul>
             </div>
-            <div className="p-10 bg-white/[0.02]">
-              <h3 className="text-[#8cff2e] font-medium mb-8 uppercase tracking-wider text-xs">AmbaLay Maps</h3>
-              <ul className="space-y-4 text-white text-sm">
-                <li>✓ Smart dashboard, real-time updates</li>
-                <li>✓ Simple, transparent pricing</li>
-                <li>✓ Automated reports & smart alerts</li>
-                <li>✓ Team-friendly, sync accounts easily</li>
+
+            {/* Pro Plan */}
+            <div className="bg-[#0A0A0A] border border-[#8cff2e]/20 rounded-[32px] p-10 flex flex-col relative">
+              <div className="absolute top-6 right-8 bg-[#8cff2e]/10 text-[#8cff2e] text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Popular</div>
+              <h3 className="text-2xl font-medium text-white mb-6">Pro</h3>
+              <div className="flex items-baseline gap-1 mb-6">
+                <span className="text-5xl font-medium text-white">{isYearly ? "$490" : "$49"}</span>
+                <span className="text-gray-500">/{isYearly ? 'year' : 'month'}</span>
+              </div>
+              <p className="text-gray-400 text-sm mb-10 leading-relaxed">
+                Advanced tools to build smarter mapping experiences and unlock powerful routing insights.
+              </p>
+              <button className="w-full py-4 bg-[#8cff2e] text-black rounded-full font-medium mb-10 flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(140,255,46,0.2)] hover:scale-[1.02] transition-all">
+                Get Started <ArrowUpRight size={18} />
+              </button>
+              <ul className="space-y-4">
+                {["Unlimited requests", "24/7 Priority Support", "Full API Suite", "AI-powered routing"].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-sm text-gray-300">
+                    <CheckCircle2 size={18} className="text-[#8cff2e]" /> {item}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -399,6 +477,28 @@ export default function Home() {
       </section>
 
       <Footer />
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes marqueeLeft {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes marqueeRight {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        .animate-marquee-left {
+          animation: marqueeLeft 40s linear infinite;
+          width: max-content;
+        }
+        .animate-marquee-right {
+          animation: marqueeRight 40s linear infinite;
+          width: max-content;
+        }
+        .animate-marquee-left:hover, .animate-marquee-right:hover {
+          animation-play-state: paused;
+        }
+      `}} />
     </div>
   )
 }
