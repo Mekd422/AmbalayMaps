@@ -1,0 +1,102 @@
+import { Mail, Handshake, Building2, Send } from "lucide-react";
+
+export default function ContactSection() {
+  return (
+    <section className="px-6 md:px-12 py-24 bg-black flex items-center justify-center">
+      <div className="max-w-5xl w-full mx-auto">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* Left Side: Info */}
+          <div className="lg:col-span-5 flex flex-col justify-center">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-[#8cff2e] opacity-60 font-mono text-sm">//</span>
+              <span className="text-[#8cff2e] text-xs font-medium uppercase tracking-[0.2em]">Contact</span>
+            </div>
+            <h2 className="text-5xl md:text-6xl font-medium text-white tracking-tight leading-[1.1] mb-12">
+              Let's build <br />
+              <span className="text-gray-500">together</span>
+            </h2>
+
+            <div className="space-y-4 max-w-sm">
+              {[
+                { icon: Mail, label: "General Inquiries", value: "hello@ambalay.com" },
+                { icon: Handshake, label: "Partnerships", value: "partners@ambalay.com" },
+                { icon: Building2, label: "Enterprise Sales", value: "enterprise@ambalay.com" },
+              ].map((item, idx) => (
+                <div 
+                  key={idx} 
+                  className="flex items-center gap-4 p-5 rounded-2xl bg-[#0A0A0A] border border-white/5 transition-all duration-300 hover:border-[#8cff2e]/30 group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-[#8cff2e]/5 flex items-center justify-center border border-[#8cff2e]/10 group-hover:bg-[#8cff2e]/10">
+                    <item.icon size={18} className="text-[#8cff2e]" />
+                  </div>
+                  <div>
+                    <p className="text-gray-600 text-[10px] uppercase tracking-widest font-bold mb-0.5">{item.label}</p>
+                    <p className="text-white text-sm font-medium">{item.value}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Side: Form */}
+          <div className="lg:col-span-7">
+            <div className="bg-[#0A0A0A] border border-white/5 rounded-[40px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                <div>
+                  <label className="block text-gray-500 text-[11px] font-semibold uppercase tracking-wider mb-3 ml-1">Name</label>
+                  <input 
+                    type="text" 
+                    placeholder="Your name" 
+                    className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#8cff2e]/40 transition-all placeholder:text-gray-700"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-gray-500 text-[11px] font-semibold uppercase tracking-wider mb-3 ml-1">Email</label>
+                  <input 
+                    type="email" 
+                    placeholder="you@company.com" 
+                    className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#8cff2e]/40 transition-all placeholder:text-gray-700"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-500 text-[11px] font-semibold uppercase tracking-wider mb-3 ml-1">Inquiry Type</label>
+                  <div className="relative">
+                    <select className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#8cff2e]/40 transition-all appearance-none cursor-pointer">
+                      <option className="bg-[#0A0A0A]">General Inquiry</option>
+                      <option className="bg-[#0A0A0A]">Partnership</option>
+                      <option className="bg-[#0A0A0A]">Technical Support</option>
+                    </select>
+                    <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-gray-500 text-[11px] font-semibold uppercase tracking-wider mb-3 ml-1">Message</label>
+                  <textarea 
+                    rows={4}
+                    placeholder="Tell us about your project..." 
+                    className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#8cff2e]/40 transition-all placeholder:text-gray-700 resize-none"
+                  />
+                </div>
+
+                <button 
+                  type="submit"
+                  className="w-full bg-[#8cff2e] text-black font-bold py-5 rounded-2xl flex items-center justify-center gap-3 transition-all hover:bg-[#a3ff5c] hover:shadow-[0_0_30px_rgba(140,255,46,0.2)] active:scale-[0.98] mt-4"
+                >
+                  <Send size={18} strokeWidth={2.5} />
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
