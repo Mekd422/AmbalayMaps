@@ -12,6 +12,7 @@ import PricingSection from "../Components/ui/PricingSection"
 import IndustriesSection from "../Components/ui/IndustriesSection"
 // import ContactSection from "../Components/ui/ContactSection"
 import FAQSection from "../Components/ui/FAQSection"
+import CTASection from "../Components/ui/CTASection"
 
 import dashboardImg from "../assets/images/dashboard.png"
 
@@ -67,6 +68,7 @@ export default function Home() {
       <IndustriesSection />
       {/* <ContactSection /> */}
       <FAQSection />
+      <CTASection />
       <Footer />
 
       <style dangerouslySetInnerHTML={{ __html: `
