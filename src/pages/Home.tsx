@@ -10,7 +10,8 @@ import ComparisonSection from "../Components/ui/ComparisonSection"
 import TestimonialMarquee from "../Components/ui/TestimonialMarquee"
 import PricingSection from "../Components/ui/PricingSection"
 import IndustriesSection from "../Components/ui/IndustriesSection"
-import ContactSection from "../Components/ui/ContactSection"
+// import ContactSection from "../Components/ui/ContactSection"
+import FAQSection from "../Components/ui/FAQSection"
 
 import dashboardImg from "../assets/images/dashboard.png"
 
@@ -64,7 +65,8 @@ export default function Home() {
       <TestimonialMarquee />
       <PricingSection />
       <IndustriesSection />
-      <ContactSection />
+      {/* <ContactSection /> */}
+      <FAQSection />
       <Footer />
 
       <style dangerouslySetInnerHTML={{ __html: `
