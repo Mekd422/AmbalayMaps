@@ -4,13 +4,10 @@ import ctaImage from "../../assets/images/last-ui-img.webp";
 export default function CTASection() {
   return (
     <section className="bg-black py-16 px-6 md:px-12 relative overflow-visible">
-      {/* Container - max-w-4xl for the perfect small size */}
-      <div className="max-w-4xl mx-auto relative selection:bg-[#8cff2e] selection:text-black">
+      <div className="max-w-5xl mx-auto relative selection:bg-[#8cff2e] selection:text-black">
         
-        {/* The Card: Specified background and border color */}
         <div className="relative bg-[#0d0d0d] rounded-[32px] border border-white/5 p-8 md:p-12 overflow-hidden z-10">
           
-          {/* Content: Small and contained typography */}
           <div className="max-w-sm relative z-30">
             <h2 className="text-3xl md:text-4xl font-medium text-white mb-4 leading-tight tracking-tight">
               Ready to Build with <br /> AmbaLay Maps?
@@ -24,11 +21,9 @@ export default function CTASection() {
             </button>
           </div>
 
-          {/* Subtle internal glow */}
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#8cff2e]/5 blur-[80px] rounded-full z-0" />
         </div>
 
-        {/* The Image: Perfect size, now with decreased shadows */}
         <div className="absolute -right-2 -bottom-8 md:-bottom-12 w-[220px] md:w-[320px] z-20 pointer-events-none">
           <div className="relative">
             <img 
@@ -36,15 +31,11 @@ export default function CTASection() {
               alt="Ready to build" 
               className="w-full h-auto object-contain select-none"
               style={{
-                /* DECREASED SHADOW: Fading much later and slower now.
-                   Image is sharp up to 35% (face and chest), then fades smoothly. 
-                */
                 maskImage: 'linear-gradient(to bottom, black 35%, rgba(0,0,0,0.6) 65%, transparent 95%)',
                 WebkitMaskImage: 'linear-gradient(to bottom, black 35%, rgba(0,0,0,0.6) 65%, transparent 95%)'
               }}
             />
             
-            {/* The "Merged" shadow layer: Only a subtle blend at the base now (h-28) */}
             <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black via-black/30 to-transparent" />
           </div>
         </div>

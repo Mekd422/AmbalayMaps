@@ -21,10 +21,8 @@ export default function Navbar() {
         isScrolled ? "bg-black/80 backdrop-blur-xl" : "bg-black"
       }`}
     >
-      {/* Container: max-w-7xl and px-6 md:px-12 ensures alignment with Home sections */}
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
 
-        {/* Logo */}
         <div className="flex items-center gap-2">
           <img
             src={logo}
@@ -92,7 +90,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-black/95 backdrop-blur-md border-b border-white/10 z-50 lg:hidden">
           <div className="flex flex-col p-6 space-y-4 text-white">

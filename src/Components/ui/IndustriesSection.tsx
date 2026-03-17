@@ -33,10 +33,8 @@ export default function IndustriesSection() {
 
   return (
     <section className="px-6 md:px-12 py-24 bg-black">
-      {/* Container aligned with comprehensive solutions (max-w-5xl) */}
       <div className="max-w-5xl mx-auto">
         
-        {/* Header Section */}
         <div className="mb-14">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-[#8cff2e] opacity-60 font-mono text-sm">//</span>
@@ -50,7 +48,6 @@ export default function IndustriesSection() {
 
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Navigation */}
           <div className="lg:col-span-4 flex flex-col space-y-1">
             {industries.map((item) => (
               <button
@@ -71,11 +68,9 @@ export default function IndustriesSection() {
             ))}
           </div>
 
-          {/* Right Content Card */}
           <div className="lg:col-span-8">
             <div className="bg-[#0A0A0A] border border-white/5 rounded-[32px] p-8 md:p-12 min-h-[420px] flex flex-col justify-center shadow-2xl">
               
-              {/* Heading with Branding Icon */}
               <div className="flex items-center gap-4 mb-6">
                 <activeData.icon className="text-[#8cff2e]" size={32} />
                 <h3 className="text-3xl font-medium text-white">{activeData.title}</h3>
@@ -85,7 +80,6 @@ export default function IndustriesSection() {
                 {activeData.desc}
               </p>
 
-              {/* API Stack with Branding Color */}
               <div>
                 <p className="text-gray-600 text-[10px] font-bold uppercase tracking-[0.2em] mb-5">API STACK</p>
                 <div className="flex flex-wrap gap-2.5">

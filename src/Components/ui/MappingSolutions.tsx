@@ -21,7 +21,6 @@ export default function MappingSolutions() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-6">
-          {/* Top Row Cards */}
           {[
             { img: geoImg, title: "Geo", desc: "See all your accounts in one view — balances, spending, and goals." },
             { img: cashflowImg, title: "Cashflow Overview", desc: "Track your daily income and expenses to understand your financial flow." }
@@ -40,7 +39,6 @@ export default function MappingSolutions() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {/* Bottom Row Cards */}
           <div className="rounded-[32px] bg-[#0A0A0A] border border-white/5 p-4 flex flex-col">
             <div className="relative rounded-[24px] bg-[#111] aspect-square flex items-center justify-center overflow-hidden mb-8">
               <img src={spendingImg} alt="Spending" className="w-[85%] h-auto object-contain" />

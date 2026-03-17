@@ -6,7 +6,6 @@ export default function ContactSection() {
       <div className="max-w-5xl w-full mx-auto">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left Side: Info */}
           <div className="lg:col-span-5 flex flex-col justify-center">
             <div className="flex items-center gap-2 mb-4">
               <span className="text-[#8cff2e] opacity-60 font-mono text-sm">//</span>
@@ -39,7 +38,6 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Right Side: Form */}
           <div className="lg:col-span-7">
             <div className="bg-[#0A0A0A] border border-white/5 rounded-[40px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
               <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
