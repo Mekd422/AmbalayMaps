@@ -25,6 +25,7 @@ import matrixIcon from "../assets/icons/matrix-api.svg"
 import elevationIcon from "../assets/icons/elevation-api.svg"
 
 import logo from "../assets/icons/download.svg"
+import IndustriesSection from "../Components/ui/IndustriesSection"
 
 export default function Home() {
   const previewRef = useRef<HTMLElement | null>(null)
@@ -475,7 +476,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      <IndustriesSection />
       <Footer />
 
       <style dangerouslySetInnerHTML={{ __html: `
