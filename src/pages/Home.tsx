@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import Navbar from "../Components/layout/Navbar"
 import Footer from "../Components/layout/Footer"
-import dashboardImg from "../assets/images/dashboard.png"
 
-// UI Section Components
 import HeroSection from "../Components/ui/HeroSection"
 import HowItWorks from "../Components/ui/HowItWorks"
 import MappingSolutions from "../Components/ui/MappingSolutions"
@@ -13,6 +11,8 @@ import TestimonialMarquee from "../Components/ui/TestimonialMarquee"
 import PricingSection from "../Components/ui/PricingSection"
 import IndustriesSection from "../Components/ui/IndustriesSection"
 import ContactSection from "../Components/ui/ContactSection"
+
+import dashboardImg from "../assets/images/dashboard.png"
 
 export default function Home() {
   const previewRef = useRef<HTMLElement | null>(null)
@@ -38,10 +38,8 @@ export default function Home() {
   return (
     <div className="bg-black min-h-screen font-sora selection:bg-[#8cff2e] selection:text-black">
       <Navbar />
-      
       <HeroSection />
 
-      {/* The Tilt Preview is kept here to maintain the scroll ref logic easily */}
       <section ref={previewRef} className="px-6 md:px-12 pb-12 md:pb-16 bg-black -mt-10 md:-mt-14">
         <div className="max-w-5xl mx-auto">
           <div className="relative" style={{ perspective: "2200px" }}>
@@ -67,10 +65,8 @@ export default function Home() {
       <PricingSection />
       <IndustriesSection />
       <ContactSection />
-      
       <Footer />
 
-      {/* Global Marquee Styles */}
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes marqueeLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes marqueeRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
