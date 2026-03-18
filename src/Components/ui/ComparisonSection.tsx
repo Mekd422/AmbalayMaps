@@ -7,7 +7,7 @@ export default function ComparisonSection() {
       <div className="max-w-5xl mx-auto text-center">
         <div className="inline-flex items-center gap-2 text-[#8cff2e] mb-6">
           <span className="h-1.5 w-1.5 rounded-full bg-[#8cff2e]" />
-          <span className="text-xs font-medium uppercase tracking-[0.2em]">Why AmbaLay Maps?</span>
+          <span className="text-xs font-medium uppercase tracking-[0.05em]">Why AmbaLay Maps?</span>
         </div>
         <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight leading-tight mb-20">
           There’s a smarter way to <br className="hidden md:block" /> handle geography

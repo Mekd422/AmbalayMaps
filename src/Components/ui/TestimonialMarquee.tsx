@@ -21,7 +21,7 @@ export default function TestimonialMarquee() {
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <h2 className="text-4xl md:text-5xl font-medium text-white leading-tight max-w-md">Loved by individuals and small teams</h2>
-          <p className="text-lg text-gray-400 max-w-sm">Trusted mapping solutions that empower developers.</p>
+          <p className="text-lg text-zinc-400 max-w-sm">People across industries trust Clario to manage money, reduce stress, and make smarter decisions — all in one simple dashboard.</p>
         </div>
         <div className="flex flex-col gap-8">
           {[row1, row2].map((row, idx) => (

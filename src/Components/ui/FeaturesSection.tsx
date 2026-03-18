@@ -30,16 +30,28 @@ export default function FeaturesSection() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-16">
-          {detailedFeatures.map((feature, idx) => (
-            <div key={idx} className="group bg-[#0A0A0A] border border-white/5 rounded-[32px] p-8 transition-all hover:border-[#8cff2e]/20">
-              <div className="w-12 h-12 rounded-xl bg-[#111] border border-white/10 flex items-center justify-center mb-8 shadow-[0_0_20px_rgba(140,255,46,0.05)] transition-all group-hover:shadow-[0_0_30px_rgba(140,255,46,0.15)]">
-                <img src={feature.icon} alt={feature.title} className="w-6 h-6" />
-              </div>
-              <h4 className="text-xl font-medium text-white mb-3">{feature.title}</h4>
-              <p className="text-sm text-gray-500 leading-relaxed">{feature.desc}</p>
-            </div>
-          ))}
-        </div>
+  {detailedFeatures.map((feature, idx) => (
+    <div 
+      key={idx} 
+      className="group bg-[#0A0A0A] border border-white/5 rounded-[32px] p-8 transition-all hover:border-[#8cff2e]/20 duration-300"
+    >
+      {/* This is the Icon Background Container */}
+      <div className="w-12 h-12 rounded-xl bg-black border border-white/5 flex items-center justify-center mb-8 
+                      transition-all duration-300 
+                      group-hover:border-[#8cff2e]/50 
+                      group-hover:shadow-[0_0_20px_rgba(140,255,46,0.3)]">
+        <img 
+          src={feature.icon} 
+          alt={feature.title} 
+          className="w-7 h-7" // Removed drop-shadow from the icon itself
+        />
+      </div>
+      
+      <h4 className="text-xl font-medium text-white mb-3">{feature.title}</h4>
+      <p className="text-base text-zinc-400 leading-relaxed">{feature.desc}</p>
+    </div>
+  ))}
+</div>
 
         <div className="flex justify-center">
           <button className="flex items-center gap-2 text-white font-medium text-sm group transition-colors hover:text-[#8cff2e]">
