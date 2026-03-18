@@ -7,18 +7,35 @@ import person1 from "../../assets/images/person1.png"
 import person2 from "../../assets/images/person2.png"
 import person3 from "../../assets/images/person3.png"
 
+import { motion } from "framer-motion"
+
 export default function MappingSolutions() {
   return (
     <section className="px-6 md:px-12 py-24 bg-black">
       <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-          <h2 className="text-4xl md:text-5xl font-medium text-white leading-none inline-block origin-left tracking-[-0.05em] scale-x-70 scale-y-110">
-            Comprehensive Mapping Solutions.
-          </h2>
-          <p className="text-lg text-gray-400 max-w-sm">
-            From simple markers to complex routing algorithms, our API provides everything you need for location-based applications.
-          </p>
-        </div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 overflow-hidden">
+        {/* H2: Comes from the LEFT */}
+        <motion.h2 
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-4xl md:text-5xl font-medium text-white leading-none inline-block origin-left tracking-[-0.05em] scale-x-70 scale-y-110"
+        >
+          Comprehensive <br /> Mapping Solutions.
+        </motion.h2>
+
+        {/* P: Comes from the RIGHT */}
+        <motion.p 
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+          className="text-lg text-gray-400 max-w-sm"
+        >
+          From simple markers to complex routing algorithms, our API provides everything you need for location-based applications.
+        </motion.p>
+      </div>
 
 <div className="grid md:grid-cols-[1.6fr_1fr] gap-6 mb-6">
   

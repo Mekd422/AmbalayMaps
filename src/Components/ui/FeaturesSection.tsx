@@ -22,7 +22,7 @@ export default function FeaturesSection() {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 text-[#8cff2e] mb-6">
             <span className="h-1.5 w-1.5 rounded-full bg-[#8cff2e]" />
-            <span className="text-xs font-medium uppercase tracking-[0.2em]">Features</span>
+            <span className="text-xs font-sora font-medium uppercase tracking-[0.05em]">Features</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight leading-tight">
             Designed for clarity, built for <br className="hidden md:block" /> better mapping solutions
