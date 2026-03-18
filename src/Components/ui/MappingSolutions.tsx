@@ -12,7 +12,7 @@ export default function MappingSolutions() {
     <section className="px-6 md:px-12 py-24 bg-black">
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-          <h2 className="text-4xl md:text-5xl font-medium text-white leading-tight max-w-md">
+          <h2 className="text-4xl md:text-5xl font-medium text-white leading-none inline-block origin-left tracking-[-0.05em] scale-x-70 scale-y-110">
             Comprehensive Mapping Solutions.
           </h2>
           <p className="text-lg text-gray-400 max-w-sm">
@@ -20,44 +20,78 @@ export default function MappingSolutions() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
-          {[
-            { img: geoImg, title: "Geo", desc: "See all your accounts in one view — balances, spending, and goals." },
-            { img: cashflowImg, title: "Cashflow Overview", desc: "Track your daily income and expenses to understand your financial flow." }
-          ].map((item, idx) => (
-            <div key={idx} className="group rounded-[32px] bg-[#0A0A0A] border border-white/5 p-4 flex flex-col h-full transition-all hover:border-white/10">
-              <div className="relative rounded-[24px] bg-[#111] flex items-center justify-center overflow-hidden aspect-[4/3] mb-6">
-                <img src={item.img} alt={item.title} className="w-[90%] h-auto object-contain transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.8)] pointer-events-none" />
-              </div>
-              <div className="px-4 pb-4">
-                <h3 className="text-2xl font-medium text-white mb-3">{item.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed max-w-[280px]">{item.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+<div className="grid md:grid-cols-[1.6fr_1fr] gap-6 mb-6">
+  
+  <div className="group rounded-[32px] bg-[#0A0A0A] border border-white/5 overflow-hidden flex flex-col h-full transition-all hover:border-white/10">
+    <div className="relative bg-[#111] flex items-center justify-center overflow-hidden h-[320px]">
+      <img 
+        src={geoImg} 
+        alt="Geo" 
+        className="w-[80%] h-auto object-contain transition-transform duration-500 group-hover:scale-105" 
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
+    </div>
+    <div className="p-8">
+      <h3 className="text-2xl font-semibold text-white mb-3">Geo</h3>
+      <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+        See all your accounts in one view — balances, spending, and goals.
+      </p>
+    </div>
+  </div>
+
+  <div className="group rounded-[32px] bg-[#0A0A0A] border border-white/5 overflow-hidden flex flex-col h-full transition-all hover:border-white/10">
+    <div className="relative bg-[#111] flex items-center justify-center overflow-hidden h-[320px]">
+      <img 
+        src={cashflowImg} 
+        alt="Cashflow Overview" 
+        className="w-[80%] h-auto object-contain transition-transform duration-500 group-hover:scale-105" 
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
+    </div>
+    <div className="p-8">
+      <h3 className="text-2xl font-semibold text-white mb-3 leading-tight">Cashflow Overview</h3>
+      <p className="text-gray-400 text-sm leading-relaxed">
+        Track your daily income and expenses to understand your flow.
+      </p>
+    </div>
+  </div>
+
+</div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="rounded-[32px] bg-[#0A0A0A] border border-white/5 p-4 flex flex-col">
-            <div className="relative rounded-[24px] bg-[#111] aspect-square flex items-center justify-center overflow-hidden mb-8">
-              <img src={spendingImg} alt="Spending" className="w-[85%] h-auto object-contain" />
+          {/* CARD: Spending Breakdown */}
+          <div className="rounded-[32px] bg-[#0A0A0A] border border-white/5 overflow-hidden flex flex-col transition-all hover:border-white/10 group">
+            <div className="relative bg-[#111] aspect-square flex items-center justify-center overflow-hidden">
+              <img 
+                src={spendingImg} 
+                alt="Spending" 
+                className="w-[85%] h-auto object-contain transition-transform duration-500 group-hover:scale-105" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
             </div>
-            <div className="px-4 pb-6">
-              <h3 className="text-xl font-medium text-white mb-2">Spending Breakdown</h3>
+            <div className="p-8">
+              <h3 className="text-xl font-semibold text-white mb-2">Spending Breakdown</h3>
               <p className="text-gray-400 text-sm leading-relaxed">See exactly how your money is split across categories.</p>
             </div>
           </div>
 
-          <div className="rounded-[32px] bg-[#0A0A0A] border border-white/5 p-4 flex flex-col">
-            <div className="relative rounded-[24px] bg-[#111] aspect-square flex items-center justify-center overflow-hidden mb-8">
-              <img src={savingsImg} alt="Savings" className="w-[85%] h-auto object-contain" />
+          {/* CARD: Savings Goal */}
+          <div className="rounded-[32px] bg-[#0A0A0A] border border-white/5 overflow-hidden flex flex-col transition-all hover:border-white/10 group">
+            <div className="relative bg-[#111] aspect-square flex items-center justify-center overflow-hidden">
+              <img 
+                src={savingsImg} 
+                alt="Savings" 
+                className="w-[85%] h-auto object-contain transition-transform duration-500 group-hover:scale-105" 
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
             </div>
-            <div className="px-4 pb-6">
-              <h3 className="text-xl font-medium text-white mb-2">Savings Goal</h3>
+            <div className="p-8">
+              <h3 className="text-xl font-semibold text-white mb-2">Savings Goal</h3>
               <p className="text-gray-400 text-sm leading-relaxed">Stay focused on your savings targets and follow your progress.</p>
             </div>
           </div>
+
 
           <div className="flex flex-col gap-6">
             <div className="bg-[#0A0A0A] rounded-[32px] border border-white/5 p-8 flex-1 flex flex-col justify-center">

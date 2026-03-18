@@ -52,7 +52,7 @@ export default function HowItWorks() {
             whileInView={{ opacity: 1, x: 0 }} 
             viewport={{ once: true }} 
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-4xl md:text-5xl font-medium text-white leading-none inline-block origin-left tracking-[-0.05em] scale-x-70 scale-y-110"
+            className="text-4xl md:text-4xl font-medium text-white leading-none inline-block origin-left tracking-[-0.05em] scale-x-70 scale-y-110"
           >
             How AmbaLay Maps works
           </motion.h2>
@@ -63,7 +63,7 @@ export default function HowItWorks() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }} // Triggers when 10% of the grid is seen
+          viewport={{ once: true, amount: 0.1 }} 
           className="grid md:grid-cols-3 gap-10"
         >
           {steps.map((item) => (
