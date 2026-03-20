@@ -30,9 +30,11 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center gap-2">
           <img src={logo} alt="AmbaLay Maps Logo" className="h-11 w-11" />
-          <h4 className="text-lg font-medium font-sora tracking-tight text-black dark:text-white">
+          <Link to="/">
+            <h4 className="text-lg font-medium font-sora tracking-tight text-black dark:text-white">
             AmbaLay Maps
           </h4>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}

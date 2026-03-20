@@ -7,10 +7,6 @@ export default function ContactSection() {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           <div className="lg:col-span-5 flex flex-col justify-center">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-[#8cff2e] opacity-60 font-mono text-sm">//</span>
-              <span className="text-[#8cff2e] text-xs font-medium uppercase tracking-[0.2em]">Contact</span>
-            </div>
             <h2 className="text-5xl md:text-6xl font-medium text-white tracking-tight leading-[1.1] mb-12">
               Let's build <br />
               <span className="text-gray-500">together</span>
@@ -38,9 +34,9 @@ export default function ContactSection() {
             </div>
           </div>
 
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-6">
             <div className="bg-[#0A0A0A] border border-white/5 rounded-[40px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div>
                   <label className="block text-gray-500 text-[11px] font-semibold uppercase tracking-wider mb-3 ml-1">Name</label>
                   <input 

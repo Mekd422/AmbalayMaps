@@ -36,10 +36,7 @@ export default function IndustriesSection() {
       <div className="max-w-5xl mx-auto">
         
         <div className="mb-14">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-[#8cff2e] opacity-60 font-mono text-sm">//</span>
-            <span className="text-[#8cff2e] text-xs font-medium uppercase tracking-[0.2em]">Industries</span>
-          </div>
+          
           <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight leading-tight">
             Powering mobility <br />
             <span className="text-gray-500">across sectors</span>
