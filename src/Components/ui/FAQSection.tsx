@@ -18,7 +18,6 @@ export default function FAQSection() {
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
           <div className="space-y-4">
-            <span className="text-[#8cff2e] font-mono text-xs tracking-[0.3em] uppercase">// FAQ</span>
             <h2 className="text-4xl md:text-5xl font-medium text-white leading-tight">
               Got questions? <br /> We've got answers.
             </h2>

@@ -9,7 +9,7 @@ const Documentation = () => {
     { group: "Quick Start Guide", items: ["Introduction", "Syntax and Structure", "Control Flow", "Functions", "Objects and Arrays", "ES6+ Features"] },
     { group: "Geocoding", items: ["Asynchronous JavaScript", "Modules and Imports"] },
     { group: "Get to know", items: ["DOM Manipulation", "Event Handling", "Forms and Input Handling"] },
-    { group: "Routing API", items: ["Web API"] }
+    { group: "Routing API", items: ["Web API", "Compatibility and Performance"] }
   ];
 
   return (
@@ -57,7 +57,7 @@ const Documentation = () => {
                 <h4 className="text-[11px] font-sora font-bold uppercase tracking-[0.15em] text-white mb-4">
                   {group.group}
                 </h4>
-                <ul className="space-y-3">
+                <ul className="space-y-3 pl-4 border-l border-white/5">
                   {group.items.map((item, i) => (
                     <li key={i}>
                       <a href="#" className={`text-xs transition-colors ${i === 0 && idx === 0 ? 'text-white font-medium' : 'text-gray-500 hover:text-[#8cff2e]'}`}>
@@ -174,29 +174,28 @@ const Documentation = () => {
       </div>
       {/* FOOTER: Now sits under the whole page */}
       <footer className="w-full relative bg-[#050505] py-16 border-t border-white/10">
-  {/* Faint top edge */}
-  <div className="absolute top-0 left-0 w-full h-1 bg-white/5"></div>
+        <div className="absolute top-0 left-0 w-full h-1 bg-white/5"></div>
 
-  <div className="w-full px-6 lg:px-24 flex flex-col md:flex-row justify-between items-center gap-4">
-    <div className="text-sm text-gray-500">
-      SquareDocs · © 2026 All rights reserved
-    </div>
-    <div className="flex gap-6 text-sm font-medium">
-      <a
-        href="/privacy"
-        className="text-gray-400 hover:text-white transition-colors underline decoration-gray-800 underline-offset-4"
-      >
-        Privacy Policy
-      </a>
-      <a
-        href="/terms"
-        className="text-gray-400 hover:text-white transition-colors underline decoration-gray-800 underline-offset-4"
-      >
-        Terms of service
-      </a>
-    </div>
-  </div>
-</footer>
+        <div className="w-full px-6 lg:px-24 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-sm text-gray-500">
+            SquareDocs · © 2026 All rights reserved
+          </div>
+          <div className="flex gap-6 text-sm font-medium">
+            <a
+              href="/privacy"
+              className="text-gray-400 hover:text-white transition-colors underline decoration-gray-800 underline-offset-4"
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="/terms"
+              className="text-gray-400 hover:text-white transition-colors underline decoration-gray-800 underline-offset-4"
+            >
+              Terms of service
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

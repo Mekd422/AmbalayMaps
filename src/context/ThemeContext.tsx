@@ -1,0 +1,41 @@
+import { createContext, useEffect, useState } from "react"
+
+
+type Theme = "light" | "dark"
+
+interface ThemeContextType {
+  theme: Theme
+  toggleTheme: () => void
+}
+
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
+
+export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+
+  const [theme, setTheme] = useState<Theme>(() => {
+    const saved = localStorage.getItem("theme") as Theme | null
+
+    if (saved) return saved
+
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+    return prefersDark ? "dark" : "light"
+  })
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark")
+  }, [theme])
+
+  const toggleTheme = () => {
+    const newTheme: Theme = theme === "dark" ? "light" : "dark"
+    setTheme(newTheme)
+    localStorage.setItem("theme", newTheme)
+  }
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  )
+}
+
+export { ThemeContext }

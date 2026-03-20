@@ -38,11 +38,11 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="bg-black min-h-screen font-sora selection:bg-[#8cff2e] selection:text-black">
+    <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen font-sora selection:bg-[#8cff2e] selection:text-black">
       <Navbar />
       <HeroSection />
 
-      <section ref={previewRef} className="px-6 md:px-12 pb-12 md:pb-16 bg-black -mt-10 md:-mt-14">
+      <section ref={previewRef} className="px-6 md:px-12 pb-12 md:pb-16 bg-white dark:bg-black -mt-10 md:-mt-14">
         <div className="max-w-5xl mx-auto">
           <div className="relative" style={{ perspective: "1500px" }}>
             <div
@@ -54,7 +54,7 @@ export default function Home() {
             >
               <img src={dashboardImg} alt="Preview" className="block w-full h-auto" />
               
-              <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/80 to-transparent" />      </div>
+              <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-white dark:from-black via-white/80 dark:via-black/80 to-transparent" />      </div>
             </div>
         </div>
       </section>
