@@ -58,12 +58,16 @@ export default function Home() {
         </div>
       </section>
 
-      <HowItWorks />
+      <div id="how-it-works">
+        <HowItWorks />
+      </div>
       <MappingSolutions />
       <FeaturesSection />
       <ComparisonSection />
       <TestimonialMarquee />
-      <PricingSection />
+      <div id="pricing">
+        <PricingSection />
+      </div>
       <IndustriesSection />
       <FAQSection />
       <CTASection />

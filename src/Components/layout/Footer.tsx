@@ -6,7 +6,8 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
           
-          <div className="lg:col-span-6 space-y-8">
+          {/* 1. Increased span to 8 to push everything else to the right */}
+          <div className="lg:col-span-8 space-y-8">
             <div className="flex items-center gap-3">
               <img
                 src={logo}
@@ -27,9 +28,8 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="hidden lg:block lg:col-span-2"></div>
-
-          <div className="lg:col-span-2">
+          {/* 2. Removed the spacer div and used text-right logic for desktop */}
+          <div className="lg:col-span-2 lg:text-right">
             <h4 className="font-medium text-white mb-6 uppercase text-xs tracking-widest">Quick Menu</h4>
             <ul className="space-y-4 text-sm text-gray-400">
               <li><a href="#" className="hover:text-[#8cff2e] transition-colors">How it works</a></li>
@@ -40,7 +40,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 lg:text-right">
             <h4 className="font-medium text-white mb-6 uppercase text-xs tracking-widest">Information</h4>
             <ul className="space-y-4 text-sm text-gray-400">
               <li><a href="#contact" className="hover:text-[#8cff2e] transition-colors">Contact</a></li>
@@ -50,6 +50,7 @@ export default function Footer() {
               <li><a href="#" className="hover:text-[#8cff2e] transition-colors">Remix Template</a></li>
             </ul>
           </div>
+
         </div>
       </div>
     </footer>

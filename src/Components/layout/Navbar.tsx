@@ -39,18 +39,18 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-10 text-black dark:text-white">
-          <a href="#about" className="text-sm hover:text-[#8cff2e] transition-colors">
+          <Link to="/#how-it-works" className="text-sm hover:text-[#8cff2e] transition-colors">
             About Us
-          </a>
-          <a href="#pricing" className="text-sm hover:text-[#8cff2e] transition-colors">
+          </Link>
+          <Link to="/#pricing" className="text-sm hover:text-[#8cff2e] transition-colors">
             Pricing
-          </a>
+          </Link>
           <Link to="/documentation" className="text-sm hover:text-[#8cff2e] transition-colors">
             Documentation
           </Link>
-          <a href="#blog" className="text-sm hover:text-[#8cff2e] transition-colors">
+          <Link to="/blog" className="text-sm hover:text-[#8cff2e] transition-colors">
             Blog
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Buttons */}

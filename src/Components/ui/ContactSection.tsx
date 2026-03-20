@@ -1,16 +1,27 @@
 import { Mail, Handshake, Building2, Send } from "lucide-react";
+import { motion } from "framer-motion"; // Added for consistency
 
 export default function ContactSection() {
   return (
-    <section className="px-6 md:px-12 py-24 bg-black flex items-center justify-center">
-      <div className="max-w-5xl w-full mx-auto">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    /* 1. Kept px-6 md:px-12 and max-w-5xl to match your example exactly */
+    <section className="px-6 md:px-12 py-24 bg-black overflow-hidden">
+      <div className="max-w-5xl mx-auto">
+        
+        {/* 2. Using lg:grid-cols-12 to create a precise gap */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 items-start">
           
+          {/* Left Column: Span 5 */}
           <div className="lg:col-span-5 flex flex-col justify-center">
-            <h2 className="text-5xl md:text-6xl font-medium text-white tracking-tight leading-[1.1] mb-12">
+            <motion.h2 
+              initial={{ x: -60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="text-5xl md:text-6xl font-medium text-white tracking-tight leading-[1.1] mb-12"
+            >
               Let's build <br />
               <span className="text-gray-500">together</span>
-            </h2>
+            </motion.h2>
 
             <div className="space-y-4 max-w-sm">
               {[
@@ -34,7 +45,17 @@ export default function ContactSection() {
             </div>
           </div>
 
-          <div className="lg:col-span-6">
+          {/* 3. The Spacer: Column 6 is left empty to increase the gap between left and right */}
+          <div className="hidden lg:block lg:col-span-1"></div>
+
+          {/* Right Column: Span 6 */}
+          <motion.div 
+            initial={{ x: 60, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            className="lg:col-span-6"
+          >
             <div className="bg-[#0A0A0A] border border-white/5 rounded-[40px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div>
@@ -87,8 +108,7 @@ export default function ContactSection() {
                 </button>
               </form>
             </div>
-          </div>
-
+          </motion.div>
         </div>
       </div>
     </section>
