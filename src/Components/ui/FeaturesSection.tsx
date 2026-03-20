@@ -6,6 +6,8 @@ import placesIcon from "../../assets/icons/search.svg"
 import matrixIcon from "../../assets/icons/matrix-api.svg"
 import elevationIcon from "../../assets/icons/elevation-api.svg"
 
+import { motion } from "framer-motion";
+
 export default function FeaturesSection() {
   const detailedFeatures = [
     { title: "Geocoding", desc: "Convert addresses to coordinates and back with high accuracy. Our geocoding API provides precise location data.", icon: geocodingIcon },
@@ -19,7 +21,16 @@ export default function FeaturesSection() {
   return (
     <section className="px-6 md:px-12 py-24 bg-black border-t border-white/5">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ y: 40, opacity: 0 }} 
+          whileInView={{ y: 0, opacity: 1 }} 
+          viewport={{ once: true }}
+          transition={{ 
+            duration: 0.7, 
+            ease: [0.21, 0.47, 0.32, 0.98] 
+          }}
+          className="text-center mb-16"
+        >
           <div className="inline-flex items-center gap-2 text-[#8cff2e] mb-6">
             <span className="h-1.5 w-1.5 rounded-full bg-[#8cff2e]" />
             <span className="text-xs font-sora font-medium uppercase tracking-[0.05em]">Features</span>
@@ -27,7 +38,7 @@ export default function FeaturesSection() {
           <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight leading-tight">
             Designed for clarity, built for <br className="hidden md:block" /> better mapping solutions
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-16">
   {detailedFeatures.map((feature, idx) => (

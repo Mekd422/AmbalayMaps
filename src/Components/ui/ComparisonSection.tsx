@@ -2,17 +2,30 @@ import { XCircle, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion"; 
 import logo from "../../assets/icons/download.svg";
 
+
 export default function ComparisonSection() {
   return (
     <section className="px-6 md:px-12 py-24 bg-black overflow-hidden">
       <div className="max-w-5xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 text-[#8cff2e] mb-6">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#8cff2e]" />
-          <span className="text-xs font-medium uppercase tracking-[0.05em]">Why AmbaLay Maps?</span>
-        </div>
-        <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight leading-tight mb-20">
-          There’s a smarter way to <br className="hidden md:block" /> handle geography
-        </h2>
+
+        <motion.div
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ 
+            duration: 0.8, 
+            ease: [0.16, 1, 0.3, 1], 
+            delay: 0.1 
+          }}
+        >
+          <div className="inline-flex items-center gap-2 text-[#8cff2e] mb-6">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#8cff2e]" />
+            <span className="text-xs font-medium uppercase tracking-[0.05em]">Why AmbaLay Maps?</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight leading-tight mb-20">
+            There’s a smarter way to <br className="hidden md:block" /> handle geography
+          </h2>
+        </motion.div>
 
         <div className="relative max-w-4xl mx-auto rounded-[40px] border border-white/10 bg-[#0A0A0A] overflow-hidden">
           <div className="grid md:grid-cols-2">
