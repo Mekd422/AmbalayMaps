@@ -43,21 +43,21 @@ export default function Home() {
       <HeroSection />
 
       <section ref={previewRef} className="px-6 md:px-12 pb-12 md:pb-16 bg-black -mt-10 md:-mt-14">
-  <div className="max-w-5xl mx-auto">
-    <div className="relative" style={{ perspective: "1500px" }}>
-      <div
-        className="relative overflow-hidden rounded-3xl border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.55)] transition-transform duration-700 ease-out"
-        style={{
-          transform: `rotateX(${(1 - previewProgress) * 200}deg) translateY(${(1 - previewProgress) * 20}px) scale(${1 + (1 - previewProgress) * 0.05})`,
-          transformOrigin: "center top",
-        }}
-      >
-        <img src={dashboardImg} alt="Preview" className="block w-full h-auto" />
-        
-        <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/80 to-transparent" />      </div>
-    </div>
-  </div>
-</section>
+        <div className="max-w-5xl mx-auto">
+          <div className="relative" style={{ perspective: "1500px" }}>
+            <div
+              className="relative overflow-hidden rounded-3xl border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.55)] transition-transform duration-700 ease-out"
+              style={{
+                transform: `rotateX(${(1 - previewProgress) * 200}deg) translateY(${(1 - previewProgress) * 20}px) scale(${1 + (1 - previewProgress) * 0.05})`,
+                transformOrigin: "center top",
+              }}
+            >
+              <img src={dashboardImg} alt="Preview" className="block w-full h-auto" />
+              
+              <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/80 to-transparent" />      </div>
+            </div>
+        </div>
+      </section>
 
       <HowItWorks />
       <MappingSolutions />

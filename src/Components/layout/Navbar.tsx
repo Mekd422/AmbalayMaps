@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
 import logo from "../../assets/icons/download.svg";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,9 +43,12 @@ export default function Navbar() {
           <a href="#pricing" className="text-sm hover:text-[#8cff2e] transition-colors">
             Pricing
           </a>
-          <a href="#features" className="text-sm hover:text-[#8cff2e] transition-colors">
+          <Link 
+            to="/documentation" 
+            className="text-sm hover:text-[#8cff2e] transition-colors"
+          >
             Documentation
-          </a>
+          </Link>
           <a href="#blog" className="text-sm hover:text-[#8cff2e] transition-colors">
             Blog
           </a>
@@ -95,8 +99,13 @@ export default function Navbar() {
           <div className="flex flex-col p-6 space-y-4 text-white">
             <a href="#about" className="px-5 py-2 rounded-full hover:bg-white/10 text-center transition-colors" onClick={() => setIsMenuOpen(false)}>About Us</a>
             <a href="#pricing" className="px-5 py-2 rounded-full hover:bg-white/10 text-center transition-colors" onClick={() => setIsMenuOpen(false)}>Pricing</a>
-            <a href="#features" className="px-5 py-2 rounded-full hover:bg-white/10 text-center transition-colors" onClick={() => setIsMenuOpen(false)}>Documentation</a>
-            <a href="#blog" className="px-5 py-2 rounded-full hover:bg-white/10 text-center transition-colors" onClick={() => setIsMenuOpen(false)}>Blog</a>
+<Link 
+  to="/documentation" 
+  className="px-5 py-2 rounded-full hover:bg-white/10 text-center transition-colors" 
+  onClick={() => setIsMenuOpen(false)}
+>
+  Documentation
+</Link>            <a href="#blog" className="px-5 py-2 rounded-full hover:bg-white/10 text-center transition-colors" onClick={() => setIsMenuOpen(false)}>Blog</a>
             
             <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
               <button className="px-5 py-2 rounded-full bg-white/10 text-white transition-colors">Shop</button>
