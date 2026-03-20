@@ -1,5 +1,6 @@
-import { XCircle, CheckCircle2 } from "lucide-react"
-import logo from "../../assets/icons/download.svg"
+import { XCircle, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion"; 
+import logo from "../../assets/icons/download.svg";
 
 export default function ComparisonSection() {
   return (
@@ -27,7 +28,17 @@ export default function ComparisonSection() {
               </ul>
             </div>
 
-            <div className="p-10 md:p-14 text-left bg-gradient-to-br from-white/[0.03] to-transparent relative group">
+            <motion.div 
+              initial={{ x: 100, opacity: 0 }} 
+              whileInView={{ x: 0, opacity: 1 }} 
+              viewport={{ once: true }} 
+              transition={{ 
+                duration: 0.8, 
+                ease: "easeOut",
+                delay: 0.2 
+              }}
+              className="p-10 md:p-14 text-left bg-gradient-to-br from-white/[0.03] to-transparent relative group"
+            >
               <div className="absolute inset-0 border-2 border-[#8cff2e]/20 rounded-[40px] pointer-events-none" />
               <div className="flex items-center gap-3 mb-10">
                 <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center overflow-hidden">
@@ -43,10 +54,10 @@ export default function ComparisonSection() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
