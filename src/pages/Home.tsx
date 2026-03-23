@@ -14,7 +14,6 @@ import FAQSection from "../Components/ui/FAQSection"
 import CTASection from "../Components/ui/CTASection"
 
 import dashboardImg from "../assets/images/dashboard.png"
-import { useLocation } from "react-router-dom";
 
 export default function Home() {
   const previewRef = useRef<HTMLElement | null>(null)
@@ -37,19 +36,6 @@ export default function Home() {
     return () => window.removeEventListener("scroll", update)
   }, [])
 
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.hash) {
-      const el = document.querySelector(location.hash);
-      if (el) {
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: "smooth" });
-        }, 100); 
-      }
-    }
-  }, [location]);
-
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen font-sora selection:bg-[#8cff2e] selection:text-black">
       <Navbar />
@@ -66,7 +52,7 @@ export default function Home() {
               }}
             >
               <img src={dashboardImg} alt="Preview" className="block w-full h-auto" />
-              
+
               <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-white dark:from-black via-white/80 dark:via-black/80 to-transparent" />      </div>
             </div>
         </div>
