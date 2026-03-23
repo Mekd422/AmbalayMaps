@@ -14,6 +14,7 @@ import FAQSection from "../Components/ui/FAQSection"
 import CTASection from "../Components/ui/CTASection"
 
 import dashboardImg from "../assets/images/dashboard.png"
+import { useLocation } from "react-router-dom";
 
 export default function Home() {
   const previewRef = useRef<HTMLElement | null>(null)
@@ -35,6 +36,19 @@ export default function Home() {
     window.addEventListener("scroll", update, { passive: true })
     return () => window.removeEventListener("scroll", update)
   }, [])
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: "smooth" });
+        }, 100); 
+      }
+    }
+  }, [location]);
 
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen font-sora selection:bg-[#8cff2e] selection:text-black">

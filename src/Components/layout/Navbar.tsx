@@ -92,8 +92,8 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-white dark:bg-black border-b border-gray-200 dark:border-white/10 z-50 lg:hidden">
           <div className="flex flex-col p-6 space-y-4 text-black dark:text-white">
-            <a href="#about" onClick={() => setIsMenuOpen(false)}>About Us</a>
-            <a href="#pricing" onClick={() => setIsMenuOpen(false)}>Pricing</a>
+            <Link to="/#how-it-works">About Us</Link>
+            <Link to="/#pricing">Pricing</Link>
             <Link to="/documentation" onClick={() => setIsMenuOpen(false)}>Documentation</Link>
             <a href="#blog" onClick={() => setIsMenuOpen(false)}>Blog</a>
 

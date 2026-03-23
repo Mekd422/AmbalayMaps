@@ -15,7 +15,6 @@ const Documentation = () => {
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sora selection:bg-[#8cff2e] selection:text-black">
       
-      {/* Navbar with Left Indentation */}
       <nav className="h-16 border-b border-white/5 bg-[#050505]/50 backdrop-blur-md sticky top-0 z-50">
         <div className="w-full h-full flex items-center justify-between px-6 lg:pl-24 lg:pr-12">
           <div className="flex items-center gap-8">
@@ -37,7 +36,6 @@ const Documentation = () => {
       </nav>
 
       <div className="flex">
-        {/* Sidebar with Left Indentation */}
         <aside className="hidden lg:block w-72 shrink-0 border-r border-white/10 pt-12 pr-8 lg:ml-24 h-[calc(100vh-64px)] sticky top-16 overflow-y-auto no-scrollbar">
           <div className="relative mb-8">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={14} />
@@ -71,7 +69,6 @@ const Documentation = () => {
           </div>
         </aside>
 
-        {/* Main Content: Centered perfectly within the available space */}
         <main className="flex-1 pt-16 pb-24 px-6 md:px-12 relative flex flex-col items-center">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-purple-900/10 blur-[140px] -z-10 pointer-events-none" />
           
@@ -133,7 +130,6 @@ const Documentation = () => {
               </div>
             </div>
 
-            {/* --- NEW SECTION: Features Grid (From Screenshot) --- */}
             <div className="w-full mt-32 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 text-left">
               <FeatureItem 
                 icon={<Pencil className="text-indigo-500" size={20} />}
@@ -172,7 +168,6 @@ const Documentation = () => {
           
         </main>
       </div>
-      {/* FOOTER: Now sits under the whole page */}
       <footer className="w-full relative bg-[#050505] py-16 border-t border-white/10">
         <div className="absolute top-0 left-0 w-full h-1 bg-white/5"></div>
 
@@ -210,7 +205,7 @@ const CategoryCard = ({ icon, title, desc }: { icon: React.ReactNode, title: str
   </div>
 );
 
-// New Sub-component for the Features section
+
 const FeatureItem = ({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) => (
   <div className="flex gap-4 group">
     <div className="mt-1 shrink-0">
@@ -226,7 +221,5 @@ const FeatureItem = ({ icon, title, desc }: { icon: React.ReactNode, title: stri
     </div>
   </div>
 );
-
-
 
 export default Documentation;

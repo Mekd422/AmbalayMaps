@@ -3,11 +3,14 @@ import Home from "../pages/Home"
 import Documentation from "../pages/Documentation"
 import Contact from "../pages/Contact"
 import BlogS from "../pages/Blog"
+import ScrollToHash from "../utils/ScrollToHash"
 
 
 export default function AppRoutes() {
   return (
     <BrowserRouter>
+
+      <ScrollToHash />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/documentation" element={<Documentation />} />
