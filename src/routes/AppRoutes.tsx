@@ -3,6 +3,7 @@ import Home from "../pages/Home"
 import Documentation from "../pages/Documentation"
 import Contact from "../pages/Contact"
 import BlogS from "../pages/Blog"
+import Shop from "../pages/Shop"
 import ScrollToHash from "../utils/ScrollToHash"
 
 
@@ -16,6 +17,7 @@ export default function AppRoutes() {
         <Route path="/documentation" element={<Documentation />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<BlogS />} />
+        <Route path="/shop" element={<Shop />} />
       </Routes>
     </BrowserRouter>
   )

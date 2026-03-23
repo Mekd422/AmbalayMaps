@@ -26,12 +26,8 @@ const Documentation = () => {
             </div>
             <div className="flex gap-6 text-sm">
               <a href="#" className="bg-white/10 px-3 py-1 rounded-md text-white transition-all">Documentation</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors py-1">Changelog</a>
             </div>
           </div>
-          <button className="p-2 text-gray-400 hover:text-white transition-colors">
-            <Moon size={18} />
-          </button>
         </div>
       </nav>
 

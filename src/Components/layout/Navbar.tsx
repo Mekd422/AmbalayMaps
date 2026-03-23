@@ -71,9 +71,12 @@ return (
 
         {/* Desktop Buttons */}
         <div className="hidden lg:flex items-center gap-4">
-          <button className="group bg-gray-100 dark:bg-[#1a1a1a] flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium text-black dark:text-white hover:bg-gray-200 dark:hover:bg-[#2f2f2f] transition-colors">
+
+          <Link 
+            to="/shop"
+            className="group bg-gray-100 dark:bg-[#1a1a1a] flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium text-black dark:text-white hover:bg-gray-200 dark:hover:bg-[#2f2f2f] transition-colors">
             Shop <ArrowUpRight size={16} />
-          </button>
+          </Link>
 
           <Link
             to="/contact"
