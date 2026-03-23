@@ -13,7 +13,9 @@ import IndustriesSection from "../Components/ui/IndustriesSection"
 import FAQSection from "../Components/ui/FAQSection"
 import CTASection from "../Components/ui/CTASection"
 
-import dashboardImg from "../assets/images/dashboard.png"
+
+import { Canvas } from "@react-three/fiber";
+import MapGlobe from "../Components/ui/MapGlobe";
 
 export default function Home() {
   const previewRef = useRef<HTMLElement | null>(null)
@@ -41,21 +43,44 @@ export default function Home() {
       <Navbar />
       <HeroSection />
 
-      <section ref={previewRef} className="px-6 md:px-12 pb-12 md:pb-16 bg-white dark:bg-black -mt-10 md:-mt-14">
-        <div className="max-w-5xl mx-auto">
-          <div className="relative" style={{ perspective: "1500px" }}>
-            <div
-              className="relative overflow-hidden rounded-3xl border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.55)] transition-transform duration-700 ease-out"
-              style={{
-                transform: `rotateX(${(1 - previewProgress) * 200}deg) translateY(${(1 - previewProgress) * 20}px) scale(${1 + (1 - previewProgress) * 0.05})`,
-                transformOrigin: "center top",
-              }}
-            >
-              <img src={dashboardImg} alt="Preview" className="block w-full h-auto" />
+      <section 
+        ref={previewRef} 
+        className="relative h-[500px] md:h-[650px] bg-black overflow-hidden border-y border-white/5"
+      >
+        {/* Top Fade: Smooths the transition from Hero */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black to-transparent z-10" />
+        
+        <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+          <MapGlobe progress={previewProgress} />
+        </Canvas>
 
-              <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-white dark:from-black via-white/80 dark:via-black/80 to-transparent" />      </div>
-            </div>
-        </div>
+        {/* Overlay Text - Smaller, Technical Aesthetic */}
+<div 
+  className="absolute inset-0 flex flex-col items-center justify-center z-20 transition-all duration-1000 pointer-events-none"
+  style={{ 
+    opacity: previewProgress,
+    transform: `translateY(${(1 - previewProgress) * 20}px)` 
+  }}
+>
+  <div className="text-center max-w-xl px-6">
+    {/* Tagline: Very small and spaced out */}
+    <h3 className="text-[#8cff2e] font-bold text-[10px] uppercase tracking-[0.6em] mb-4 opacity-70">
+      Localized Intelligence
+    </h3>
+    
+    {/* Main Title: Compact but clean */}
+    <h2 className="text-white text-lg md:text-xl lg:text-2xl font-medium leading-relaxed tracking-wide">
+      Powering Ethiopia's digital infrastructure <br className="hidden md:block" /> 
+      with <span className="text-[#8cff2e] font-semibold">precision geospatial data.</span>
+    </h2>
+
+    {/* Optional: Add a subtle decorative line to anchor the small text */}
+    <div className="w-12 h-[1px] bg-[#8cff2e]/30 mx-auto mt-6" />
+  </div>
+</div>
+
+        {/* Bottom Fade: Smooths the transition to the next section */}
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
       </section>
 
       <div id="how-it-works">
