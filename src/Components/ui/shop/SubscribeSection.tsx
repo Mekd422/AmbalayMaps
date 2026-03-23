@@ -5,7 +5,7 @@ const SubscribeSection: React.FC = () => {
     <section className="bg-white py-24 px-6 flex flex-col items-center justify-center text-center">
       <div className="max-w-4xl mx-auto">
         {/* Main Heading - Deep Forest Green */}
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black tracking-tight mb-6">
+        <h2 className="text-3xl md:text-5xl lg:text-4xl font-bold text-black tracking-tight mb-6">
           Subscribe for New Product Alerts
         </h2>
 

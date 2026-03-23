@@ -23,8 +23,8 @@ export default function Footer() {
             </p>
             
             <div className="pt-4 flex items-center gap-2 text-sm text-gray-500">
-              <span className="text-[#8cff2e]">♥</span> 
-              <span>Designed by <span className="text-white hover:text-[#8cff2e] transition-colors cursor-pointer">Hawi Girma ©2026</span></span>
+              {/* <span className="text-[#8cff2e]">♥</span> 
+              <span>Designed by <span className="text-white hover:text-[#8cff2e] transition-colors cursor-pointer">Hawi Girma ©2026</span></span> */}
             </div>
           </div>
 

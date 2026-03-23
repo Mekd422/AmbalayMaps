@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowUpRight } from "lucide-react";
+// import { ArrowUpRight } from "lucide-react";
 
 interface ProductProps {
   image: string;
@@ -56,38 +56,38 @@ const RecentTemplates: React.FC = () => {
     {
       image: "/shop-s1-img2.jpg",
       category: "Digital Asset",
-      title: "Design Partner",
+      title: "Amba Cap",
       price: "Free",
-      sizes: ["UI", "UX", "WEB"]
+      sizes: ["S", "M", "L", "XL", "XXL"]
     },
     {
       image: "/shop-s1-img3.jpg",
       category: "Agency",
       title: "Vinency",
       price: 1200,
-      sizes: ["DEV", "SEO", "MKT"]
+      sizes:["S", "M", "L", "XL", "XXL"]
     },
     // Bottom Row
     {
-      image: "/shop-s1-img4.jpg",
+      image: "/shop-s2-img1.jpg",
       category: "Clothing",
-      title: "Amba Cap",
+      title: "World Explorer Notebook",
       price: "Free",
-      sizes: ["L", "L", "L", "L", "L"]
+      sizes: ["S", "M", "L", "XL", "XXL"]
     },
     {
-      image: "/shop-s1-img5.jpg",
+      image: "/shop-s2-img2.webp",
       category: "Accessories",
-      title: "Navigation Mug",
+      title: "Topographic Contour Hoodie",
       price: 250,
-      sizes: ["One Size"]
+      sizes: ["S", "M", "L", "XL", "XXL"]
     },
     {
-      image: "/shop-s1-img6.jpg",
+      image: "/shop-s2-img3.webp",
       category: "Digital Asset",
-      title: "Solarify Dashboard",
+      title: "Map Marker Sticker Pack",
       price: 800,
-      sizes: ["React", "Tailwind"]
+      sizes: ["S", "M", "L", "XL", "XXL"]
     }
   ];
 
@@ -98,9 +98,9 @@ const RecentTemplates: React.FC = () => {
           <h2 className="text-white text-3xl md:text-4xl font-bold tracking-tight">
             Recent Templates
           </h2>
-          <button className="flex items-center gap-2 bg-white hover:bg-[#8cff2e] text-black px-5 py-2 rounded-full text-sm font-bold transition-all group">
+          {/* <button className="flex items-center gap-2 bg-white hover:bg-[#8cff2e] text-black px-5 py-2 rounded-full text-sm font-bold transition-all group">
             Browse all <ArrowUpRight size={16} className="group-hover:rotate-45 transition-transform" />
-          </button>
+          </button> */}
         </div>
 
         {/* Grid handles the wrapping automatically */}
