@@ -8,7 +8,6 @@ import MappingSolutions from "../Components/ui/MappingSolutions"
 import FeaturesSection from "../Components/ui/FeaturesSection"
 import ComparisonSection from "../Components/ui/ComparisonSection"
 import TestimonialMarquee from "../Components/ui/TestimonialMarquee"
-import PricingSection from "../Components/ui/PricingSection"
 import IndustriesSection from "../Components/ui/IndustriesSection"
 import FAQSection from "../Components/ui/FAQSection"
 import CTASection from "../Components/ui/CTASection"
@@ -90,9 +89,9 @@ export default function Home() {
       <FeaturesSection />
       <ComparisonSection />
       <TestimonialMarquee />
-      <div id="pricing">
+      {/* <div id="pricing">
         <PricingSection />
-      </div>
+      </div> */}
       <IndustriesSection />
       <FAQSection />
       <CTASection />

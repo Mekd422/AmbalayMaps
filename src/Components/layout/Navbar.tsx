@@ -51,7 +51,7 @@ return (
             className="text-sm hover:text-[#8cff2e] transition-colors">
             About Us
           </Link>
-          <Link to="/#pricing" 
+          <Link to="/price" 
             onClick={() => {
               setTimeout(() => {
                 const el = document.querySelector("#pricing");
@@ -64,7 +64,14 @@ return (
           <Link to="/documentation" className="text-sm hover:text-[#8cff2e] transition-colors">
             Documentation
           </Link>
-          <Link to="/blog" className="text-sm hover:text-[#8cff2e] transition-colors">
+          <Link to="/blog" 
+          onClick={() => {
+              setTimeout(() => {
+                const el = document.querySelector("#pricing");
+                el?.scrollIntoView({ behavior: "smooth" });
+              }, 100);
+            }} 
+          className="text-sm hover:text-[#8cff2e] transition-colors">
             Blog
           </Link>
         </div>
