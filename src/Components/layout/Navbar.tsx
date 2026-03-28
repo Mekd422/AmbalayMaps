@@ -55,7 +55,7 @@ export default function Navbar() {
           {/* 2. Contact Button */}
           <Link
             to="/contact"
-            className="group flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium bg-[#8cff2e] text-black hover:brightness-110 transition-all"
+            className="group flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium bg-gray-100 text-black hover:brightness-110 transition-all"
           >
             Contact <ArrowUpRight size={15} />
           </Link>
