@@ -6,6 +6,7 @@ import BlogS from "../pages/Blog"
 import Shop from "../pages/Shop"
 import Price from "../pages/Pricing"
 import ScrollToHash from "../utils/ScrollToHash"
+import Register from "../pages/RegisterPage"
 
 
 export default function AppRoutes() {
@@ -20,6 +21,8 @@ export default function AppRoutes() {
         <Route path="/blog" element={<BlogS />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/price"element={<Price/>} />
+        <Route path="/register"element={<Register/>} />
+
       </Routes>
     </BrowserRouter>
   )
