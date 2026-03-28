@@ -7,6 +7,7 @@ import Shop from "../pages/Shop"
 import Price from "../pages/Pricing"
 import ScrollToHash from "../utils/ScrollToHash"
 import Register from "../pages/RegisterPage"
+import Login from "../pages/Login"
 
 
 export default function AppRoutes() {
@@ -22,6 +23,7 @@ export default function AppRoutes() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/price"element={<Price/>} />
         <Route path="/register"element={<Register/>} />
+        <Route path="/login"element={<Login/>} />
 
       </Routes>
     </BrowserRouter>

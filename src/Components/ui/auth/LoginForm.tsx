@@ -36,7 +36,7 @@ export default function LoginForm() {
               type="email"
               required
               placeholder="abebe@company.com"
-              className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-[#557a3a] transition-all"
+              className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-[#8cff2e] transition-all"
             />
           </div>
 
@@ -46,7 +46,7 @@ export default function LoginForm() {
               <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Password
               </label>
-              <Link to="/forgot-password" className="text-xs text-[#557a3a] dark:text-[#8cff2e] hover:underline">
+              <Link to="/forgot-password" className="text-xs text-[#8cff2e] dark:text-[#8cff2e] hover:underline">
                 Forgot password?
                 </Link>
             </div>
@@ -55,7 +55,7 @@ export default function LoginForm() {
                 type={showPassword ? "text" : "password"}
                 required
                 placeholder="••••••••"
-                className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-[#557a3a] transition-all"
+                className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-[#8cff2e] transition-all"
               />
               <button
                 type="button"
@@ -70,7 +70,7 @@ export default function LoginForm() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-3.5 px-4 bg-[#557a3a] hover:bg-[#4a6b32] text-white font-semibold rounded-lg transition-all shadow-lg shadow-[#557a3a]/20 mt-4 active:scale-[0.98]"
+            className="w-full py-3.5 px-4 bg-[#8cff2e] hover:bg-[#8cff2e] text-white font-semibold rounded-lg transition-all shadow-lg shadow-[#8cff2e]/20 mt-4 active:scale-[0.98]"
           >
             Log In
           </button>
@@ -79,7 +79,7 @@ export default function LoginForm() {
         {/* Footer Link */}
         <p className="text-center mt-8 text-sm text-gray-500 dark:text-gray-400">
           Don't have an account?{" "}
-          <Link to="/register" className="text-[#557a3a] dark:text-[#8cff2e] font-medium hover:underline">
+          <Link to="/register" className="text-[#8cff2e] dark:text-[#8cff2e] font-medium hover:underline">
             Sign up
           </Link>
         </p>
