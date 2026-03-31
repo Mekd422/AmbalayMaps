@@ -1,0 +1,85 @@
+{/* Main Page Container */}
+<div className="bg-black text-gray-300 min-h-screen font-sans">
+
+  {/* Header Section */}
+  <header className="mb-10">
+    <h1 className="text-white text-5xl font-bold mb-4 tracking-tight !mt-0">
+      Authentication
+    </h1>
+    <div className="h-[1px] bg-gray-800 w-full mb-6"></div>
+    <p className="text-gray-400 text-lg leading-relaxed">
+      Ambalay Maps API uses API keys for authentication. Every request must include a valid API key provided by Ambalay. Without a proper API key, the API will refuse the request.
+    </p>
+  </header>
+
+  {/* Obtaining Key Section */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-3 !mt-0">Obtaining an API Key</h3>
+    <p className="text-gray-400 leading-relaxed max-w-4xl">
+      Sign up for Ambalay Maps (on their developer portal or through contact with Ambalay) to receive your unique API key.
+    </p>
+  </section>
+
+  {/* Including Key Section */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-3">Including the API Key</h3>
+    <p className="text-gray-400 mb-6 max-w-4xl">
+      The API key should be included in the HTTP header of each request:
+    </p>
+
+    <div className="bg-[#0a0a0a] border border-gray-800 rounded-xl p-6 mb-8 border-l-4 border-l-[#4d79ff]">
+      <ul className="space-y-3">
+        <li className="flex gap-2">
+          <span className="text-white font-bold min-w-[120px]">Header Name:</span>
+          <span className="text-[#8cff2e] font-mono">x-api-key</span>
+        </li>
+        <li className="flex gap-2">
+          <span className="text-white font-bold min-w-[120px]">Header Value:</span>
+          <span className="text-gray-400">Your API key string (for example, 12345ABCDEF...)</span>
+        </li>
+      </ul>
+    </div>
+
+    <p className="text-gray-400 leading-relaxed italic border-l-2 border-red-500/50 pl-4">
+      Make sure to keep your API key secret. Do not expose it in client-side code or public repositories. If the API key is missing or incorrect, the API will return an error (HTTP 401 Unauthorized with a message like "API_KEY_REQUIRED"). Always double-check that you are sending the header on each request.
+    </p>
+  </section>
+
+  {/* Example Section */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-3">Example (using curl)</h3>
+    
+    <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] overflow-hidden mb-6 shadow-2xl">
+      <div className="flex justify-between items-center px-4 py-2 bg-[#1a1a1a] border-b border-gray-800">
+        <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">bash</span>
+        <button className="text-xs text-gray-500 hover:text-white transition-colors flex items-center gap-1">
+          <span className="underline">Copy</span>
+        </button>
+      </div>
+      <div className="p-5 font-mono text-sm leading-relaxed whitespace-pre-wrap">
+        <span className="text-white">curl -H "</span>
+        <span className="text-[#8cff2e]">x-api-key: YOUR_API_KEY</span>
+        <span className="text-white">" "https://api.ambalaymaps.com/v1/route?origin=9.03,38.74&destination=9.00,38.76&mode=driving"</span>
+      </div>
+    </div>
+
+    <p className="text-gray-400 mb-6">
+      In the above example, replace <span className="text-[#8cff2e] font-mono">YOUR_API_KEY</span> with the API key you obtained. The following sections detail each endpoint and how to use them.
+    </p>
+  </section>
+
+  {/* Endpoints Section */}
+  <footer className="mt-20 pt-10 border-t border-gray-900">
+    <h3 className="text-[#4d79ff] font-bold text-xl mb-4">Endpoints</h3>
+    <p className="text-gray-400 leading-relaxed mb-6">
+      All endpoints are versioned under <span className="text-[#8cff2e] font-mono">v1</span> and accept HTTPS GET requests. 
+      <span className="block mt-4 text-white font-bold">
+        Base URL: <span className="text-[#8cff2e] font-mono font-normal">https://api.ambalaymaps.com/v1</span>
+      </span>
+    </p>
+    <p className="text-gray-500 text-sm italic">
+      For each endpoint, we describe its purpose, required parameters, and show example requests and responses.
+    </p>
+  </footer>
+
+</div>

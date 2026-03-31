@@ -1,0 +1,131 @@
+{/* Main Page Container */}
+<div className="bg-black text-gray-300 min-h-screen font-sans">
+
+  {/* Header Section */}
+  <header className="mb-10">
+    <h1 className="text-white text-5xl font-bold mb-4 tracking-tight !mt-0">
+      Route Calculation
+    </h1>
+    <div className="h-[1px] bg-gray-800 w-full mb-6"></div>
+    <p className="text-gray-400 text-lg leading-relaxed">
+      <strong className="text-white">Purpose:</strong> Calculates a route (driving directions) from an origin point to a destination point. The response includes the total distance, estimated duration, and step-by-step turn instructions for the route.
+    </p>
+  </header>
+
+  {/* Endpoint Information */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-4 !mt-0">Endpoint</h3>
+    <div className="space-y-4">
+      <p className="font-mono bg-[#1a1a1a] px-3 py-1 inline-block rounded text-white">`GET / route`</p>
+      <p className="text-gray-400">
+        <strong className="text-white">Full URL:</strong> <span className="text-[#00d1ff]">https://api.ambalaymaps.com/v1/route</span>
+      </p>
+    </div>
+  </section>
+
+  {/* Parameters Table */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-6">Required Query Parameters</h3>
+    <div className="overflow-x-auto rounded-xl border border-gray-800">
+      <table className="w-full text-left border-collapse">
+        <thead className="bg-[#1a1a1a] text-gray-400 text-sm uppercase tracking-wider">
+          <tr>
+            <th className="px-6 py-4 font-semibold border-b border-gray-800">Parameter</th>
+            <th className="px-6 py-4 font-semibold border-b border-gray-800">Type</th>
+            <th className="px-6 py-4 font-semibold border-b border-gray-800">Required</th>
+            <th className="px-6 py-4 font-semibold border-b border-gray-800">Description</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-800">
+          <tr>
+            <td className="px-6 py-4 font-mono text-[#8cff2e]">origin</td>
+            <td className="px-6 py-4">string</td>
+            <td className="px-6 py-4">Yes</td>
+            <td className="px-6 py-4 text-sm">The starting point as latitude and longitude in the format "lat,lon". For example: <code className="text-white">origin=9.03,38.74</code></td>
+          </tr>
+          <tr>
+            <td className="px-6 py-4 font-mono text-[#8cff2e]">destination</td>
+            <td className="px-6 py-4">string</td>
+            <td className="px-6 py-4">Yes</td>
+            <td className="px-6 py-4 text-sm">The destination point as latitude and longitude in "lat,lon" format. For example: <code className="text-white">destination=9.00,38.76</code></td>
+          </tr>
+          <tr>
+            <td className="px-6 py-4 font-mono text-[#8cff2e]">mode</td>
+            <td className="px-6 py-4">string</td>
+            <td className="px-6 py-4">No</td>
+            <td className="px-6 py-4 text-sm">Travel mode for routing. Currently, the API supports "driving" (for car routes). Other modes (e.g., walking or cycling) may be supported in the future — if not provided, the default is driving.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p className="mt-4 text-sm text-gray-400 italic">
+      <strong className="text-white">Headers:</strong> <span className="text-[#8cff2e]">x-api-key: Your API key</span> (as described in the Authentication section).
+    </p>
+  </section>
+
+  {/* Example Request */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-3">Example Request</h3>
+    <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] overflow-hidden mb-4 shadow-2xl">
+      <div className="flex justify-between items-center px-4 py-2 bg-[#1a1a1a] border-b border-gray-800">
+        <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">bash</span>
+        <button className="text-xs text-gray-500 hover:text-white transition-colors flex items-center gap-1">
+           <span className="underline">Copy</span>
+        </button>
+      </div>
+      <div className="p-5 font-mono text-sm leading-relaxed whitespace-pre-wrap">
+        <span className="text-white">curl -H "x-api-key: </span>
+        <span className="text-[#8cff2e]">YOUR_API_KEY</span>
+        <span className="text-white">" "https://api.ambalaymaps.com/v1/route?origin=9.03,38.74&destination=9.00,38.76&mode=driving"</span>
+      </div>
+    </div>
+    <p className="text-gray-500 text-sm italic">This request asks for a driving route from the coordinate 9.03,38.74 to 9.00,38.76 (latitude, longitude).</p>
+  </section>
+
+  {/* Example Response */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-3">Example Response</h3>
+    <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] overflow-hidden mb-8">
+      <div className="flex justify-between items-center px-4 py-2 bg-[#1a1a1a] border-b border-gray-800">
+        <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">json</span>
+        <button className="text-xs text-gray-500 hover:text-white transition-colors">Copy</button>
+      </div>
+      <div className="p-5 font-mono text-sm leading-relaxed max-h-[400px] overflow-y-auto">
+        <div className="text-white">{`{`}</div>
+        <div className="pl-4"><span className="text-[#8cff2e]">"status"</span>: <span className="text-[#00d1ff]">200</span>,</div>
+        <div className="pl-4"><span className="text-[#8cff2e]">"message"</span>: <span className="text-[#4d79ff]">"ROUTE_CALCULATION_SUCCESS"</span>,</div>
+        <div className="pl-4"><span className="text-[#8cff2e]">"data"</span>: {`{`}</div>
+        <div className="pl-8"><span className="text-[#8cff2e]">"status"</span>: <span className="text-[#4d79ff]">"success"</span>,</div>
+        <div className="pl-8"><span className="text-[#8cff2e]">"route"</span>: {`{`}</div>
+        <div className="pl-12"><span className="text-[#8cff2e]">"distance"</span>: <span className="text-[#4d79ff]">"6.5 km"</span>,</div>
+        <div className="pl-12"><span className="text-[#8cff2e]">"duration"</span>: <span className="text-[#4d79ff]">"00:08"</span>,</div>
+        <div className="pl-12"><span className="text-[#8cff2e]">"steps"</span>: [</div>
+        <div className="pl-16 text-white">{`{`}</div>
+        <div className="pl-20"><span className="text-[#8cff2e]">"type"</span>: <span className="text-[#00d1ff]">1</span>,</div>
+        <div className="pl-20"><span className="text-[#8cff2e]">"instruction"</span>: <span className="text-[#4d79ff]">"Drive northwest."</span>,</div>
+        <div className="pl-16 text-white">{`}`}</div>
+        <div className="pl-12">]</div>
+        <div className="pl-8">{`}`}</div>
+        <div className="pl-4 text-white">{`}`}</div>
+        <div className="text-white">{`}`}</div>
+      </div>
+    </div>
+
+    <div className="space-y-4 text-gray-400 leading-relaxed">
+      <p><span className="text-[#8cff2e] font-mono">"distance"</span> is the total route length (here 6.5 km).</p>
+      <p><span className="text-[#8cff2e] font-mono">"duration"</span> is the estimated travel time (here 00:08, i.e., 8 minutes).</p>
+      <p><span className="text-[#8cff2e] font-mono">"steps"</span> is an array of turn-by-turn instructions.</p>
+    </div>
+  </section>
+
+  {/* Error Codes Section */}
+  <footer className="mt-20 pt-10 border-t border-gray-900 pb-20">
+    <h3 className="text-[#4d79ff] font-bold text-xl mb-6">Status Codes and Error Messages</h3>
+    <div className="space-y-6 text-sm">
+      <p><strong className="text-white">200 OK:</strong> Successfully found a route. The JSON message will be <span className="text-[#8cff2e]">"ROUTE_CALCULATION_SUCCESS"</span>.</p>
+      <p><strong className="text-white">401 Unauthorized:</strong> Missing or invalid API key. Response will have status 401 and message <span className="text-[#8cff2e]">"API_KEY_REQUIRED"</span>.</p>
+      <p><strong className="text-white">500 Internal Server Error:</strong> The route could not be calculated. This can happen if required parameters are missing or if no route is found.</p>
+    </div>
+  </footer>
+
+</div>

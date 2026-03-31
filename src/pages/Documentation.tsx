@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { 
-  Search, Moon, FileText, MapPin, HelpCircle, Compass, 
-  Pencil, Database, Layout, Sparkles, Gauge,
-  Menu, X 
+  Search, FileText, MapPin, HelpCircle, Compass, 
+  Menu, X, Pencil, Database, Layout, Sparkles, Moon, Gauge 
 } from 'lucide-react';
 
+// --- Imports ---
 import QuickstartContent from '../content/docs/Quickstart.mdx';
-
+import AuthenticationContent from '../content/docs/Authentication.mdx';
+import Routing from '../content/docs/Routing.mdx';
 
 interface SidebarGroup {
   group: string;
@@ -15,15 +16,15 @@ interface SidebarGroup {
 
 interface SidebarContentProps {
   sidebarLinks: SidebarGroup[];
-  activePage: string; // Added
-  onPageSelect: (page: string) => void; // Added
+  activePage: string;
+  onPageSelect: (page: string) => void;
 }
 
 interface CategoryCardProps {
   icon: React.ReactNode;
   title: string;
   desc: string;
-  onClick?: () => void; // Added
+  onClick?: () => void;
 }
 
 interface FeatureItemProps {
@@ -32,12 +33,8 @@ interface FeatureItemProps {
   desc: string;
 }
 
-// --- Main Component ---
-
 const Documentation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-  
-  // 2. Added state to track current page
   const [activePage, setActivePage] = useState<string>("Overview");
 
   const sidebarLinks: SidebarGroup[] = [
@@ -53,9 +50,114 @@ const Documentation = () => {
     window.scrollTo(0, 0);
   };
 
+  // Helper to switch content
+  const renderContent = () => {
+    if (activePage === "Quickstart Guide") {
+      return (
+        <article className="prose prose-invert prose-headings:font-bold prose-h1:text-4xl prose-h1:mb-8 prose-h3:text-xl prose-h3:mt-10 prose-code:text-[#8cff2e] prose-pre:bg-[#0A0A0A] prose-pre:border prose-pre:border-white/10 prose-strong:text-white max-w-none">
+          <QuickstartContent />
+        </article>
+      );
+    }
+
+    if (activePage === "Authentication") {
+      return (
+        <article className="prose prose-invert prose-headings:font-bold prose-h1:text-4xl prose-h1:mb-8 prose-h3:text-xl prose-h3:mt-10 prose-code:text-[#8cff2e] prose-pre:bg-[#0A0A0A] prose-pre:border prose-pre:border-white/10 prose-strong:text-white max-w-none">
+          <AuthenticationContent />
+        </article>
+      );
+    }
+
+    if (activePage === "Routing") {
+      return (
+        <article className="prose prose-invert prose-headings:font-bold prose-h1:text-4xl prose-h1:mb-8 prose-h3:text-xl prose-h3:mt-10 prose-code:text-[#8cff2e] prose-pre:bg-[#0A0A0A] prose-pre:border prose-pre:border-white/10 prose-strong:text-white max-w-none">
+          <Routing />
+        </article>
+      );
+    }
+
+    // Default Overview Page
+    return (
+      <div className="flex flex-col items-center text-center">
+        <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-5 self-center">
+          <span className="bg-[#8cff2e] text-black text-xs font-black px-2 py-0.5 rounded-full uppercase leading-none">New</span>
+          <span className="text-sm text-gray-300 font-medium">Better async handling</span>
+        </div>
+
+        <h1 className="text-2xl md:text-4xl font-bold mb-4 tracking-tight">
+          AmbaLay Maps Documentation
+        </h1>
+        <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-6 max-w-2xl">
+          Explore AmbaLay Maps API's features, integrations, and ways of implementation.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <button 
+            onClick={() => handlePageChange("Quickstart Guide")}
+            className="w-full sm:w-auto bg-white text-black px-8 py-3 rounded-xl text-sm font-bold hover:bg-gray-200 transition-all shadow-lg shadow-white/5"
+          >
+            Quickstart Guide
+          </button>
+          <span className="text-gray-500 text-sm font-medium italic">or</span>
+          <button className="w-full sm:w-auto bg-white/5 border border-white/10 text-white px-8 py-3 rounded-xl text-sm font-bold hover:bg-white/10 transition-all">
+            Start a new project
+          </button>
+        </div>
+
+        <div className="w-full text-left">
+          <h2 className="text-2xl md:text-3xl font-medium mb-10 tracking-tight">Explore by categories</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <CategoryCard 
+              icon={<FileText className="text-blue-400" size={24} />} 
+              title="Quick Start Guide" 
+              desc="Learn how to use the API and follow best practices for the software" 
+              onClick={() => handlePageChange("Quickstart Guide")}
+            />
+            <CategoryCard icon={<MapPin className="text-blue-400" size={24} />} title="Geocoding" desc="Learn how to use the API to convert addresses to coordinates and vice versa" />
+            <CategoryCard icon={<HelpCircle className="text-blue-400" size={24} />} title="Get to know" desc="Learn how to use the API and follow best practices for software building" />
+            <CategoryCard icon={<Compass className="text-blue-400" size={24} />} title="Routing API" desc="Learn how to calculate routes between locations with turn by turn directions" />
+          </div>
+        </div>
+
+        {/* Features Grid - ADDED BACK TO USE FeatureItem */}
+        <div className="w-full mt-32 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 text-left pb-20">
+          <FeatureItem 
+            icon={<Pencil className="text-indigo-500" size={20} />}
+            title="Easily editable"
+            desc="Thanks to premade assets, you can modify all colors and text, such as the Action Color"
+          />
+          <FeatureItem 
+            icon={<Database className="text-indigo-500" size={20} />}
+            title="CMS"
+            desc="Edit and manage all pages exclusively within the CMS mode"
+          />
+          <FeatureItem 
+            icon={<Layout className="text-indigo-500" size={20} />}
+            title="Components"
+            desc="Finely crafted components with multiple states and Variables"
+          />
+          <FeatureItem 
+            icon={<Sparkles className="text-indigo-500" size={20} />}
+            title="Automatically generated"
+            desc="All pages and navigation will be generated automatically from the CMS"
+          />
+          <FeatureItem 
+            icon={<Moon className="text-indigo-500" size={20} />}
+            title="Dark and Light Mode"
+            desc="Beautiful modes deliver a magnificent experience for users"
+          />
+          <FeatureItem 
+            icon={<Gauge className="text-indigo-500" size={20} />}
+            title="Optimized SEO"
+            desc="Designed to improve the discoverability of your documentation."
+          />
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sora selection:bg-[#8cff2e] selection:text-black">
-      
       {/* Navigation */}
       <nav className="h-16 border-b border-white/5 bg-[#050505]/50 backdrop-blur-md sticky top-0 z-50">
         <div className="w-full h-full flex items-center justify-between px-6 lg:pl-24 lg:pr-12">
@@ -63,7 +165,6 @@ const Documentation = () => {
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden p-2 -ml-2 text-gray-400 hover:text-white transition-colors"
-              aria-label="Toggle Menu"
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -82,7 +183,7 @@ const Documentation = () => {
       </nav>
 
       <div className="flex">
-        {/* Mobile Sidebar Overlay */}
+        {/* Mobile Sidebar */}
         <div className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
           <aside className={`absolute left-0 top-0 h-full w-72 bg-[#050505] border-r border-white/10 p-6 transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
@@ -100,132 +201,16 @@ const Documentation = () => {
         {/* Main Content */}
         <main className="flex-1 pt-16 pb-24 px-6 md:px-12 relative flex flex-col items-center">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-purple-900/10 blur-[140px] -z-10 pointer-events-none" />
-          
           <div className="w-full max-w-4xl">
-            {/* 3. CONDITIONAL RENDERING LOGIC */}
-            {activePage === "Quickstart Guide" ? (
-              <article className="prose prose-invert prose-headings:font-bold prose-h1:text-4xl prose-h1:mb-8 prose-h3:text-xl prose-h3:mt-10 prose-code:text-[#8cff2e] prose-pre:bg-[#0A0A0A] prose-pre:border prose-pre:border-white/10 prose-strong:text-white max-w-none">
-                <QuickstartContent />
-              </article>
-            ) : (
-              <div className="flex flex-col items-center text-center">
-                {/* New Badge */}
-                <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-5 self-center">
-                  <span className="bg-[#8cff2e] text-black text-xs font-black px-2 py-0.5 rounded-full uppercase leading-none">New</span>
-                  <span className="text-sm text-gray-300 font-medium">Better async handling</span>
-                </div>
-
-                {/* Hero Section */}
-                <h1 className="text-2xl md:text-4xl font-bold mb-4 tracking-tight">
-                  AmbaLay Maps Documentation
-                </h1>
-                <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-6 max-w-2xl">
-                  Explore AmbaLay Maps API's features, integrations, and ways of implementation.
-                </p>
-                
-                {/* Buttons */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                  <button 
-                    onClick={() => handlePageChange("Quickstart Guide")}
-                    className="w-full sm:w-auto bg-white text-black px-8 py-3 rounded-xl text-sm font-bold hover:bg-gray-200 transition-all shadow-lg shadow-white/5"
-                  >
-                    Quickstart Guide
-                  </button>
-                  <span className="text-gray-500 text-sm font-medium italic">or</span>
-                  <button className="w-full sm:w-auto bg-white/5 border border-white/10 text-white px-8 py-3 rounded-xl text-sm font-bold hover:bg-white/10 transition-all">
-                    Start a new project
-                  </button>
-                </div>
-
-                {/* Categories Section */}
-                <div className="w-full text-left">
-                  <h2 className="text-2xl md:text-3xl font-medium mb-10 tracking-tight">Explore by categories</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <CategoryCard 
-                      icon={<FileText className="text-blue-400" size={24} />} 
-                      title="Quick Start Guide" 
-                      desc="Learn how to use the API and follow best practices for the software" 
-                      onClick={() => handlePageChange("Quickstart Guide")}
-                    />
-                    <CategoryCard icon={<MapPin className="text-blue-400" size={24} />} title="Geocoding" desc="Learn how to use the API to convert addresses to coordinates and vice versa" />
-                    <CategoryCard icon={<HelpCircle className="text-blue-400" size={24} />} title="Get to know" desc="Learn how to use the API and follow best practices for software building" />
-                    <CategoryCard icon={<Compass className="text-blue-400" size={24} />} title="Routing API" desc="Learn how to calculate routes between locations with turn by turn directions" />
-                  </div>
-                </div>
-
-                {/* Popular Articles */}
-                <div className="w-full mt-20 text-left">
-                  <h2 className="text-2xl md:text-3xl font-medium mb-8 tracking-tight">Popular articles</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {[
-                      { cat: "Quick Start Guide", title: "Quickstart Guide" },
-                      { cat: "Geocoding", title: "Asynchronous JavaScript" },
-                      { cat: "Routing API", title: "Web API" }
-                    ].map((art, i) => (
-                      <div 
-                        key={i} 
-                        onClick={() => handlePageChange(art.title)}
-                        className="group flex items-center justify-between bg-white/5 border border-white/10 rounded-xl px-6 py-4 hover:bg-white/10 transition-all cursor-pointer"
-                      >
-                        <div>
-                          <p className="text-xs text-gray-500 mb-1">{art.cat}</p>
-                          <h3 className="text-sm font-semibold text-white">{art.title}</h3>
-                        </div>
-                        <span className="text-gray-500 group-hover:text-white transition">→</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Features Grid */}
-                <div className="w-full mt-32 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 text-left">
-                  <FeatureItem 
-                    icon={<Pencil className="text-indigo-500" size={20} />}
-                    title="Easily editable"
-                    desc="Thanks to premade assets, you can modify all colors and text, such as the Action Color"
-                  />
-                  <FeatureItem 
-                    icon={<Database className="text-indigo-500" size={20} />}
-                    title="CMS"
-                    desc="Edit and manage all pages exclusively within the CMS mode"
-                  />
-                  <FeatureItem 
-                    icon={<Layout className="text-indigo-500" size={20} />}
-                    title="Components"
-                    desc="Finely crafted components with multiple states and Variables"
-                  />
-                  <FeatureItem 
-                    icon={<Sparkles className="text-indigo-500" size={20} />}
-                    title="Automatically generated"
-                    desc="All pages and navigation will be generated automatically from the CMS"
-                  />
-                  <FeatureItem 
-                    icon={<Moon className="text-indigo-500" size={20} />}
-                    title="Dark and Light Mode"
-                    desc="Beautiful modes deliver a magnificent experience for users"
-                  />
-                  <FeatureItem 
-                    icon={<Gauge className="text-indigo-500" size={20} />}
-                    title="Optimized SEO"
-                    desc="Generate og:image for each of Docs page. Designed to improve the discoverability of your documentation."
-                  />
-                </div>
-              </div>
-            )}
+            {renderContent()}
           </div>
         </main>
       </div>
 
-      {/* Footer */}
       <footer className="w-full relative bg-[#050505] py-16 border-t border-white/10">
-        <div className="absolute top-0 left-0 w-full h-1 bg-white/5"></div>
         <div className="w-full px-6 lg:px-24 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-sm text-gray-500">
-            SquareDocs · © 2026 All rights reserved
-          </div>
-          <div className="flex gap-6 text-sm font-medium">
-            <a href="/privacy" className="text-gray-400 hover:text-white transition-colors underline decoration-gray-800 underline-offset-4">Privacy Policy</a>
-            <a href="/terms" className="text-gray-400 hover:text-white transition-colors underline decoration-gray-800 underline-offset-4">Terms of service</a>
+            AmbaLay Maps · © 2026 All rights reserved
           </div>
         </div>
       </footer>
@@ -233,7 +218,7 @@ const Documentation = () => {
   );
 };
 
-// --- Sub-Components with Updated Props ---
+// --- Sub-Components ---
 
 const SidebarContent = ({ sidebarLinks, activePage, onPageSelect }: SidebarContentProps) => (
   <>
@@ -244,19 +229,16 @@ const SidebarContent = ({ sidebarLinks, activePage, onPageSelect }: SidebarConte
         placeholder="Search..." 
         className="w-full bg-white/5 border border-white/10 rounded-lg py-2 pl-9 pr-10 text-xs focus:outline-none focus:border-[#8cff2e]/50 transition-all"
       />
-      <div className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/10 border border-white/10 rounded px-1.5 py-0.5 text-[10px] text-gray-500 font-sans hidden sm:block">
-        &nbsp;⌘K&nbsp;
-      </div>
     </div>
 
     <div className="space-y-8">
-      {sidebarLinks.map((group: SidebarGroup, idx: number) => (
+      {sidebarLinks.map((group, idx) => (
         <div key={idx}>
           <h4 className="text-[11px] font-sora font-bold uppercase tracking-[0.15em] text-white/40 mb-4">
             {group.group}
           </h4>
           <ul className="space-y-3 pl-4 border-l border-white/5">
-            {group.items.map((item: string, i: number) => (
+            {group.items.map((item, i) => (
               <li key={i}>
                 <button 
                   onClick={() => onPageSelect(item)}
