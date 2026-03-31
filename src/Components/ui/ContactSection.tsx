@@ -1,5 +1,6 @@
 import { Mail, Send } from "lucide-react";
 import { motion } from "framer-motion"; 
+import { Phone } from "lucide-react";
 
 export default function ContactSection() {
   return (
@@ -35,7 +36,7 @@ export default function ContactSection() {
               {/* Phone */}
               <div className="flex items-center gap-4 p-5 rounded-2xl bg-[#0A0A0A] border border-white/5">
                 <div className="w-10 h-10 rounded-xl bg-[#8cff2e]/5 flex items-center justify-center border border-[#8cff2e]/10">
-                  📞
+                  <Phone className="w-5 h-5 text-[#8cff2e]" />
                 </div>
                 <div>
                   <p className="text-gray-600 text-[10px] uppercase tracking-widest font-bold mb-0.5">
