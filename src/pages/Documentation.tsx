@@ -12,6 +12,9 @@ import Geocoding from '../content/docs/Geocoding.mdx';
 import ReverseGeocoding from "../content/docs/ReverseGeocoding.mdx";
 import StaticMaps from "../content/docs/StaticMaps.mdx";
 import MatrixAPI from "../content/docs/MatrixAPI.mdx";
+import LLM from "../content/docs/LLM.mdx"
+import OptimizedRoute from "../content/docs/OptimizedRoute.mdx"
+import EmbeddingMap from "../content/docs/EmbeddingMap.mdx"
 
 interface SidebarGroup {
   group: string;
@@ -70,6 +73,9 @@ const Documentation = () => {
     if (activePage === "Reverse Geocoding") return mdxWrapper(ReverseGeocoding);
     if (activePage === "Static Maps") return mdxWrapper(StaticMaps);
     if (activePage === "Matrix API") return mdxWrapper(MatrixAPI);
+    if (activePage === "LLM") return mdxWrapper(LLM);
+    if (activePage === "Optimized Route API") return mdxWrapper(OptimizedRoute);
+    if (activePage === "Embedding a Map") return mdxWrapper(EmbeddingMap);
 
     // Default Overview Page
     return (

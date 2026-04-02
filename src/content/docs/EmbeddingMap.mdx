@@ -1,0 +1,47 @@
+import CodeBlock from "../../Components/CodeBlock.tsx";
+
+export default function EmbeddingMap() {
+  const htmlExample = `<img
+  src="https://api.ambalaymaps.com/v1/staticmap?center=9.03,38.74&zoom=14&size=600x400&key=YOUR_API_KEY"
+  alt="Map of Addis Ababa">`;
+
+  return (
+    <div className="bg-black text-gray-300 min-h-screen p-8 font-sans">
+      {/* Header Section */}
+      <header className="mb-10">
+        <h1 className="text-white text-5xl font-bold mb-4 tracking-tight !mt-0">
+          Embedding a Map
+        </h1>
+        <div className="h-[1px] bg-gray-800 w-full mb-6"></div>
+        <p className="text-gray-400 text-lg leading-relaxed">
+          Add a static map to a website or application without using any special mapping library. This is useful for quickly displaying a map image.
+        </p>
+      </header>
+
+      {/* Example (HTML) Section */}
+      <section className="mb-12">
+        <h2 className="text-white text-2xl font-bold mb-6">Example (HTML)</h2>
+        <p className="text-gray-400 mb-6">
+          You can embed a static map image into an HTML page using an <code className="text-[#8cff2e]">img</code> tag. Simply specify the src URL as the Static Maps API endpoint with your parameters:
+        </p>
+        
+        <CodeBlock code={htmlExample} language="html" />
+
+        <div className="mt-8 space-y-4">
+          <p className="text-gray-400">
+            Place this in your HTML body. It will display a 600×400 px map centered on Addis Ababa once you replace <code className="text-white">YOUR_API_KEY</code> with your actual key. You can adjust the center, zoom, size, and even add markers as needed.
+          </p>
+        </div>
+      </section>
+
+      {/* Note Section */}
+      <section className="mb-12">
+        <div className="bg-[#1a1a1a] border-l-4 border-[#4d79ff] p-6 rounded-r-lg">
+          <p className="text-gray-300">
+            <strong className="text-white">Note:</strong> For interactive maps (panning/zooming), consider using the raster tile endpoints with a JavaScript map library or the official AmbaLay JavaScript SDK.
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+}
