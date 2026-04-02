@@ -8,6 +8,10 @@ import {
 import QuickstartContent from '../content/docs/Quickstart.mdx';
 import AuthenticationContent from '../content/docs/Authentication.mdx';
 import Routing from '../content/docs/Routing.mdx';
+import Geocoding from '../content/docs/Geocoding.mdx';
+import ReverseGeocoding from "../content/docs/ReverseGeocoding.mdx";
+import StaticMaps from "../content/docs/StaticMaps.mdx";
+import MatrixAPI from "../content/docs/MatrixAPI.mdx";
 
 interface SidebarGroup {
   group: string;
@@ -52,29 +56,20 @@ const Documentation = () => {
 
   // Helper to switch content
   const renderContent = () => {
-    if (activePage === "Quickstart Guide") {
-      return (
-        <article className="prose prose-invert prose-headings:font-bold prose-h1:text-4xl prose-h1:mb-8 prose-h3:text-xl prose-h3:mt-10 prose-code:text-[#8cff2e] prose-pre:bg-[#0A0A0A] prose-pre:border prose-pre:border-white/10 prose-strong:text-white max-w-none">
-          <QuickstartContent />
-        </article>
-      );
-    }
+    // Wrapper for MDX Content
+    const mdxWrapper = (Content: React.ComponentType) => (
+      <article className="prose prose-invert prose-headings:font-bold prose-h1:text-4xl prose-h1:mb-8 prose-h3:text-xl prose-h3:mt-10 prose-code:text-[#8cff2e] prose-pre:bg-[#0A0A0A] prose-pre:border prose-pre:border-white/10 prose-strong:text-white max-w-none">
+        <Content />
+      </article>
+    );
 
-    if (activePage === "Authentication") {
-      return (
-        <article className="prose prose-invert prose-headings:font-bold prose-h1:text-4xl prose-h1:mb-8 prose-h3:text-xl prose-h3:mt-10 prose-code:text-[#8cff2e] prose-pre:bg-[#0A0A0A] prose-pre:border prose-pre:border-white/10 prose-strong:text-white max-w-none">
-          <AuthenticationContent />
-        </article>
-      );
-    }
-
-    if (activePage === "Routing") {
-      return (
-        <article className="prose prose-invert prose-headings:font-bold prose-h1:text-4xl prose-h1:mb-8 prose-h3:text-xl prose-h3:mt-10 prose-code:text-[#8cff2e] prose-pre:bg-[#0A0A0A] prose-pre:border prose-pre:border-white/10 prose-strong:text-white max-w-none">
-          <Routing />
-        </article>
-      );
-    }
+    if (activePage === "Quickstart Guide") return mdxWrapper(QuickstartContent);
+    if (activePage === "Authentication") return mdxWrapper(AuthenticationContent);
+    if (activePage === "Routing") return mdxWrapper(Routing);
+    if (activePage === "Geocoding") return mdxWrapper(Geocoding);
+    if (activePage === "Reverse Geocoding") return mdxWrapper(ReverseGeocoding);
+    if (activePage === "Static Maps") return mdxWrapper(StaticMaps);
+    if (activePage === "Matrix API") return mdxWrapper(MatrixAPI);
 
     // Default Overview Page
     return (
@@ -113,38 +108,53 @@ const Documentation = () => {
               desc="Learn how to use the API and follow best practices for the software" 
               onClick={() => handlePageChange("Quickstart Guide")}
             />
-            <CategoryCard icon={<MapPin className="text-blue-400" size={24} />} title="Geocoding" desc="Learn how to use the API to convert addresses to coordinates and vice versa" />
-            <CategoryCard icon={<HelpCircle className="text-blue-400" size={24} />} title="Get to know" desc="Learn how to use the API and follow best practices for software building" />
-            <CategoryCard icon={<Compass className="text-blue-400" size={24} />} title="Routing API" desc="Learn how to calculate routes between locations with turn by turn directions" />
+            <CategoryCard 
+              icon={<MapPin className="text-blue-400" size={24} />} 
+              title="Geocoding" 
+              desc="Convert addresses to coordinates or perform reverse lookups." 
+              onClick={() => handlePageChange("Geocoding")}
+            />
+            <CategoryCard 
+              icon={<HelpCircle className="text-blue-400" size={24} />} 
+              title="Authentication" 
+              desc="Learn about API keys and how to secure your integration." 
+              onClick={() => handlePageChange("Authentication")}
+            />
+            <CategoryCard 
+              icon={<Compass className="text-blue-400" size={24} />} 
+              title="Routing API" 
+              desc="Learn how to calculate routes between locations with turn by turn directions" 
+              onClick={() => handlePageChange("Routing")}
+            />
           </div>
         </div>
 
-        {/* Features Grid - ADDED BACK TO USE FeatureItem */}
+        {/* Features Grid */}
         <div className="w-full mt-32 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 text-left pb-20">
           <FeatureItem 
             icon={<Pencil className="text-indigo-500" size={20} />}
             title="Easily editable"
-            desc="Thanks to premade assets, you can modify all colors and text, such as the Action Color"
+            desc="Modify colors and text with ease via premade assets and CSS variables."
           />
           <FeatureItem 
             icon={<Database className="text-indigo-500" size={20} />}
-            title="CMS"
-            desc="Edit and manage all pages exclusively within the CMS mode"
+            title="CMS Powered"
+            desc="Edit and manage all documentation pages exclusively within CMS mode."
           />
           <FeatureItem 
             icon={<Layout className="text-indigo-500" size={20} />}
-            title="Components"
-            desc="Finely crafted components with multiple states and Variables"
+            title="Premium Components"
+            desc="Finely crafted UI components with multiple states and variables."
           />
           <FeatureItem 
             icon={<Sparkles className="text-indigo-500" size={20} />}
-            title="Automatically generated"
-            desc="All pages and navigation will be generated automatically from the CMS"
+            title="Auto-Generated"
+            desc="Pages and navigation are generated automatically from your content folder."
           />
           <FeatureItem 
             icon={<Moon className="text-indigo-500" size={20} />}
             title="Dark and Light Mode"
-            desc="Beautiful modes deliver a magnificent experience for users"
+            desc="Native support for both themes delivering a magnificent user experience."
           />
           <FeatureItem 
             icon={<Gauge className="text-indigo-500" size={20} />}
@@ -258,7 +268,7 @@ const SidebarContent = ({ sidebarLinks, activePage, onPageSelect }: SidebarConte
 const CategoryCard = ({ icon, title, desc, onClick }: CategoryCardProps) => (
   <div 
     onClick={onClick}
-    className="bg-[#0A0A0A] border border-white/5 rounded-[24px] p-8 hover:bg-[#111111] hover:border-white/10 transition-all cursor-pointer group text-left h-full"
+    className="bg-[#0A0A0A] border border-white/5 rounded-[24px] p-8 hover:bg-[#111111] hover:border-white/10 transition-all cursor-pointer group text-left h-full flex flex-col"
   >
     <div className="mb-6 p-3 bg-white/5 w-fit rounded-xl group-hover:scale-110 transition-transform">
       {icon}

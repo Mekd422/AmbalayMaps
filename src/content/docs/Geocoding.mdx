@@ -1,0 +1,121 @@
+{/* Main Page Container */}
+<div className="bg-black text-gray-300 min-h-screen font-sans">
+
+  {/* Header Section */}
+  <header className="mb-10">
+    <h1 className="text-white text-5xl font-bold mb-4 tracking-tight !mt-0">
+      Forward Geocoding (Place Search)
+    </h1>
+    <div className="h-[1px] bg-gray-800 w-full mb-6"></div>
+    <p className="text-gray-400 text-lg leading-relaxed">
+      <strong className="text-white">Purpose:</strong> Searches for locations or addresses by name or text query. This forward geocoding endpoint returns a list of places that match the query string, each with coordinates and a display name.
+    </p>
+  </header>
+
+  {/* Endpoint Information */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-4 !mt-0">Endpoint</h3>
+    <div className="space-y-4">
+      <p className="font-mono bg-[#1a1a1a] px-3 py-1 inline-block rounded text-white">`GET / search`</p>
+      <p className="text-gray-400">
+        <strong className="text-white">Full URL:</strong> <span className="text-[#00d1ff]">https://api.ambalaymaps.com/v1/search</span>
+      </p>
+    </div>
+  </section>
+
+  {/* Parameters Table */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-6">Required Query Parameters</h3>
+    <div className="overflow-x-auto rounded-xl border border-gray-800">
+      <table className="w-full text-left border-collapse">
+        <thead className="bg-[#1a1a1a] text-gray-400 text-sm uppercase tracking-wider">
+          <tr>
+            <th className="px-6 py-4 font-semibold border-b border-gray-800">Parameter</th>
+            <th className="px-6 py-4 font-semibold border-b border-gray-800">Type</th>
+            <th className="px-6 py-4 font-semibold border-b border-gray-800">Required</th>
+            <th className="px-6 py-4 font-semibold border-b border-gray-800">Description</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-800">
+          <tr>
+            <td className="px-6 py-4 font-mono text-[#8cff2e]">query</td>
+            <td className="px-6 py-4">string</td>
+            <td className="px-6 py-4">Yes</td>
+            <td className="px-6 py-4 text-sm">
+              The search query text. This can be an address, place name, business name, etc. (for example, <code className="text-white">query=Tom</code> or <code className="text-white">query=Main%20Street%20Addis</code>). The search is not case-sensitive and can be partial; the API will attempt to find relevant matches.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div className="mt-4 space-y-1">
+       <p className="text-sm text-gray-400 italic">
+        <strong className="text-white">Headers:</strong> <span className="text-[#8cff2e]">x-api-key: Your API key</span>.
+      </p>
+    </div>
+  </section>
+
+  {/* Examples Request */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-3">Examples Request</h3>
+    <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] overflow-hidden mb-4 shadow-2xl">
+      <div className="flex justify-between items-center px-4 py-2 bg-[#1a1a1a] border-b border-gray-800">
+        <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">bash</span>
+        <button className="text-xs text-gray-500 hover:text-white transition-colors flex items-center gap-1">
+           <span className="underline">Copy</span>
+        </button>
+      </div>
+      <div className="p-5 font-mono text-sm leading-relaxed whitespace-pre-wrap">
+        <span className="text-white">curl -H "x-api-key: </span>
+        <span className="text-[#8cff2e]">YOUR_API_KEY</span>
+        <span className="text-white">" "https://api.ambalaymaps.com/v1/search?query=tom"</span>
+      </div>
+    </div>
+    <p className="text-gray-500 text-sm italic">This searches for locations that match the term "tom" (for example, places with "Tom" in their name).</p>
+  </section>
+
+  {/* Examples Response */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-3">Examples Response</h3>
+    <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] overflow-hidden mb-8">
+      <div className="flex justify-between items-center px-4 py-2 bg-[#1a1a1a] border-b border-gray-800">
+        <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">json</span>
+        <button className="text-xs text-gray-500 hover:text-white transition-colors">Copy</button>
+      </div>
+      <div className="p-5 font-mono text-sm leading-relaxed max-h-[400px] overflow-y-auto">
+        <div className="text-white">{`{`}</div>
+        <div className="pl-4"><span className="text-[#8cff2e]">"status"</span>: <span className="text-[#00d1ff]">200</span>,</div>
+        <div className="pl-4"><span className="text-[#8cff2e]">"message"</span>: <span className="text-[#4d79ff]">"GEO_CODING_SEARCH_SUCCESS"</span>,</div>
+        <div className="pl-4"><span className="text-[#8cff2e]">"data"</span>: [</div>
+        <div className="pl-8 text-white">{`{`}</div>
+        <div className="pl-12"><span className="text-[#8cff2e]">"lat"</span>: <span className="text-[#4d79ff]">"9.5983108"</span>,</div>
+        <div className="pl-12"><span className="text-[#8cff2e]">"lon"</span>: <span className="text-[#4d79ff]">"41.8701823"</span>,</div>
+        <div className="pl-12"><span className="text-[#8cff2e]">"displayName"</span>: <span className="text-[#4d79ff]">"Tom cafe, Djibouti Road, ድሬ ዳዋ... ኢትዮጵያ"</span></div>
+        <div className="pl-8 text-white">{`}`}</div>
+        <div className="pl-4 text-white">]</div>
+        <div className="text-white">{`}`}</div>
+      </div>
+    </div>
+
+    <div className="space-y-4 text-gray-400 leading-relaxed mb-6">
+      <p>The response above shows a successful search. The data field is an array of matching locations. Each entry includes:</p>
+      <ul className="list-disc ml-6 space-y-2">
+        <li><span className="text-[#8cff2e] font-mono">"lat"</span> and <span className="text-[#8cff2e] font-mono">"lon"</span>: The coordinates of the location.</li>
+        <li><span className="text-[#8cff2e] font-mono">"displayName"</span>: A formatted name or address of the place. (It often includes the name, street, city, region, and country. In this example, results are in Ethiopia and the names include local language details.)</li>
+      </ul>
+      <p className="mt-4">For the query "tom", the API returned multiple results (e.g., "Tom cafe", "Tom Supermarket", etc.). Typically, the API will return an array of possible matches, sorted by relevance.</p>
+    </div>
+  </section>
+
+  {/* Status Codes Section */}
+  <footer className="mt-20 pt-10 border-t border-gray-900 pb-20">
+    <h3 className="text-[#4d79ff] font-bold text-xl mb-6">Status Codes and Behavior</h3>
+    <div className="space-y-6 text-sm">
+      <p><strong className="text-white">200 OK (Results Found):</strong> If matches are found, message is <span className="text-[#8cff2e]">"GEO_CODING_SEARCH_SUCCESS"</span> and data will contain an array of results.</p>
+      <p><strong className="text-white">200 OK (No Results):</strong> If no places match the query, the API still returns a 200 status with message: <span className="text-[#8cff2e]">"GEO_CODING_SEARCH_SUCCESS"</span>, but the data array will be empty ([]). An empty result set is not treated as an error – it simply means nothing was found for that query. You may want to inform the user "no results found" in this case.</p>
+      <p><strong className="text-white">401 Unauthorized ::</strong> If the API key is missing or invalid, you'll get <span className="text-[#8cff2e]">"status": 401</span>, <span className="text-[#8cff2e]">"message": "API_KEY_REQUIRED"</span>. Make sure the x-api-key header is included.</p>
+      <p><strong className="text-white">400 Bad Request :</strong> If the query parameter is missing entirely, the server may treat it as an improper request. (In some cases, the API might handle it by returning an empty result set, but it's best practice to always provide a query.) Always ensure you include a query string in the request.</p>
+    </div>
+  </footer>
+
+</div>

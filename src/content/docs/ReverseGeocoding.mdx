@@ -1,0 +1,121 @@
+{/* Main Page Container */}
+<div className="bg-black text-gray-300 min-h-screen font-sans">
+
+  {/* Header Section */}
+  <header className="mb-10">
+    <h1 className="text-white text-5xl font-bold mb-4 tracking-tight !mt-0">
+      Reverse Geocoding API
+    </h1>
+    <div className="h-[1px] bg-gray-800 w-full mb-6"></div>
+    <p className="text-gray-400 text-lg leading-relaxed">
+      <strong className="text-white">Purpose:</strong> Looks up an address or place name from geographic coordinates. Given a latitude and longitude, this endpoint returns the nearest known address or location description.
+    </p>
+  </header>
+
+  {/* Endpoint Information */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-4 !mt-0">Endpoint</h3>
+    <div className="space-y-4">
+      <p className="font-mono bg-[#1a1a1a] px-3 py-1 inline-block rounded text-white">`GET / reverse`</p>
+      <p className="text-gray-400">
+        <strong className="text-white">Full URL:</strong> <span className="text-[#00d1ff]">https://api.ambalaymaps.com/v1/reverse</span>
+      </p>
+    </div>
+  </section>
+
+  {/* Parameters Table */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-6">Required Query Parameters</h3>
+    <div className="overflow-x-auto rounded-xl border border-gray-800">
+      <table className="w-full text-left border-collapse">
+        <thead className="bg-[#1a1a1a] text-gray-400 text-sm uppercase tracking-wider">
+          <tr>
+            <th className="px-6 py-4 font-semibold border-b border-gray-800">Parameter</th>
+            <th className="px-6 py-4 font-semibold border-b border-gray-800">Type</th>
+            <th className="px-6 py-4 font-semibold border-b border-gray-800">Required</th>
+            <th className="px-6 py-4 font-semibold border-b border-gray-800">Description</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-800">
+          <tr>
+            <td className="px-6 py-4 font-mono text-[#8cff2e]">lat</td>
+            <td className="px-6 py-4">number</td>
+            <td className="px-6 py-4">Yes</td>
+            <td className="px-6 py-4 text-sm">Latitude of the location to reverse geocode. Example: <code className="text-white">lat=9.017084</code></td>
+          </tr>
+          <tr>
+            <td className="px-6 py-4 font-mono text-[#8cff2e]">lon</td>
+            <td className="px-6 py-4">number</td>
+            <td className="px-6 py-4">Yes</td>
+            <td className="px-6 py-4 text-sm">Longitude of the location. Example: <code className="text-white">lon=38.774978</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p className="mt-4 text-sm text-gray-400 italic">
+      Together, these coordinates specify the location for which you want the address or place name.
+      <br />
+      <strong className="text-white">Headers:</strong> <span className="text-[#8cff2e]">x-api-key: Your API key</span>.
+    </p>
+  </section>
+
+  {/* Examples Request */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-3">Examples Request</h3>
+    <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] overflow-hidden mb-4 shadow-2xl">
+      <div className="flex justify-between items-center px-4 py-2 bg-[#1a1a1a] border-b border-gray-800">
+        <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">bash</span>
+        <button className="text-xs text-gray-500 hover:text-white transition-colors flex items-center gap-1">
+           <span className="underline">Copy</span>
+        </button>
+      </div>
+      <div className="p-5 font-mono text-sm leading-relaxed whitespace-pre-wrap">
+        <span className="text-white">curl -H "x-api-key: </span>
+        <span className="text-[#8cff2e]">YOUR_API_KEY</span>
+        <span className="text-white">" "https://api.ambalaymaps.com/v1/reverse?lat=9.017084&lon=38.774978"</span>
+      </div>
+    </div>
+    <p className="text-gray-500 text-sm italic">This requests the address corresponding to latitude 9.017084, longitude 38.774978.</p>
+  </section>
+
+  {/* Examples Response */}
+  <section className="mb-12">
+    <h3 className="text-[#4d79ff] text-xl font-bold mb-3">Examples Response</h3>
+    <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] overflow-hidden mb-8 shadow-2xl">
+      <div className="flex justify-between items-center px-4 py-2 bg-[#1a1a1a] border-b border-gray-800">
+        <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">json</span>
+        <button className="text-xs text-gray-500 hover:text-white transition-colors">Copy</button>
+      </div>
+      <div className="p-5 font-mono text-sm leading-relaxed max-h-[400px] overflow-y-auto">
+        <div className="text-white">{`{`}</div>
+        <div className="pl-4"><span className="text-[#8cff2e]">"status"</span>: <span className="text-[#00d1ff]">200</span>,</div>
+        <div className="pl-4"><span className="text-[#8cff2e]">"message"</span>: <span className="text-[#4d79ff]">"REVERSE_GEO_CODING_SUCCESS"</span>,</div>
+        <div className="pl-4"><span className="text-[#8cff2e]">"data"</span>: {`{`}</div>
+        <div className="pl-8"><span className="text-[#8cff2e]">"lat"</span>: <span className="text-[#4d79ff]">"9.016891053180457"</span>,</div>
+        <div className="pl-8"><span className="text-[#8cff2e]">"lon"</span>: <span className="text-[#4d79ff]">"38.774924279808346"</span>,</div>
+        <div className="pl-8"><span className="text-[#8cff2e]">"displayName"</span>: <span className="text-[#4d79ff]">"እንደራሴ Enderase, ካዛንቺስ, Kirkos, አዲስ አበባ Addis Ababa أديስ أبابا, አዲስ አበባ አዲስ አበባ, 9568, ኢትዮጵያ"</span></div>
+        <div className="pl-4 text-white">{`}`}</div>
+        <div className="text-white">{`}`}</div>
+      </div>
+    </div>
+
+    <div className="space-y-4 text-gray-400 leading-relaxed">
+      <p>In this JSON response:</p>
+      <ul className="list-disc ml-6 space-y-2">
+        <li><span className="text-[#8cff2e] font-mono">"lat"</span> and <span className="text-[#8cff2e] font-mono">"lon"</span> are the coordinates of the identified location (note: these may be adjusted slightly from the input to point to a known road or place).</li>
+        <li><span className="text-[#8cff2e] font-mono">"displayName"</span> is a human-readable address or place name. In this example, the display name is given in multiple languages (Amharic, English, Arabic) and includes district, city (Addis Ababa), and country (Ethiopia).</li>
+      </ul>
+    </div>
+  </section>
+
+  {/* Status Codes Section */}
+  <footer className="mt-20 pt-10 border-t border-gray-900 pb-20">
+    <h3 className="text-[#4d79ff] font-bold text-xl mb-6">Status Codes and Error Messages</h3>
+    <div className="space-y-6 text-sm">
+      <p><strong className="text-white">200 OK :</strong> The reverse geocoding was successful. message will be <span className="text-[#8cff2e]">"REVERSE_GEO_CODING_SUCCESS"</span> and data will contain the nearest address/location. If the location is very remote or not in the database, you might still get a 200 with a generic or nearby location name.</p>
+      <p><strong className="text-white">401 Unauthorized :</strong> API key missing or invalid. Returns <span className="text-[#8cff2e]">"status": 401</span>, <span className="text-[#8cff2e]">"message": "API_KEY_REQUIRED"</span>.</p>
+      <p><strong className="text-white">500 Internal Server Error :</strong> An error occurred while performing reverse geocoding. For example, if you omit lat or lon, or use an invalid value, the server will return an error with <span className="text-[#8cff2e]">message: "REVERSE_GEO_CODING_ERROR"</span>. Ensure both latitude and longitude are provided, numeric, and within valid ranges (latitude between -90 and 90, longitude between -180 and 180). A 500 error might also indicate the coordinates are outside the service coverage area.</p>
+    </div>
+  </footer>
+
+</div>
