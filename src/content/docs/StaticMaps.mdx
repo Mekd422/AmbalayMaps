@@ -1,246 +1,284 @@
-{/* Main Page Container */}
-<div className="bg-black text-gray-300 min-h-screen font-sans">
+import CodeBlock from "../../Components/CodeBlock.tsx";
 
-  {/* Header Section */}
-  <header className="mb-10">
-    <h1 className="text-white text-5xl font-bold mb-4 tracking-tight !mt-0">
-      Static Maps API
-    </h1>
-    <div className="h-[1px] bg-gray-800 w-full mb-6"></div>
-    <p className="text-gray-400 text-lg leading-relaxed">
-      Generate static map images with custom markers, paths, and styling for embedding in websites or applications without using interactive maps.
-    </p>
-  </header>
+export default function StaticMaps() {
+  const curlExample = `curl -X GET "https://api.ambalaymaps.com/v1/staticmap?center=9.03,38.74&zoom=12&size=600x400&markers=color:red|9.03,38.74&key=YOUR_API_KEY" -o map.png`;
 
-  {/* Endpoint & Description */}
-  <section className="mb-12">
-    <h3 className="text-[#4d79ff] text-xl font-bold mb-4 !mt-0">Endpoint</h3>
-    <div className="bg-[#1a1a1a] px-4 py-2 inline-block rounded mb-6">
-       <code className="text-[#8cff2e]">GET / staticmap</code>
-    </div>
+  const styledMapExample = `curl -X GET "https://api.ambalaymaps.com/v1/staticmap?center=9.03,38.74&zoom=12&size=600x400&maptype=roadmap&style=feature:water|element:geometry|color:0x0099dd&style=feature:road|element:geometry|color:0xeeeeee&key=YOUR_API_KEY" -o styled_map.png`;
+
+  const satelliteMapExample = `curl -X GET "https://api.ambalaymaps.com/v1/staticmap?center=9.03,38.74&zoom=12&size=600x400&maptype=hybrid&key=YOUR_API_KEY" -o satellite_map.png`;
+
+  const htmlUsage = `<img src="https://api.ambalaymaps.com/v1/staticmap?center=9.03,38.74&zoom=12&size=600x400&key=YOUR_API_KEY" alt="Map of Addis Ababa">
+
+<img src="https://api.ambalaymaps.com/v1/staticmap?center=9.03,38.74&zoom=12&size=600x400&markers=color:red|9.03,38.74&key=YOUR_API_KEY" alt="Map with marker">
+
+<img src="https://api.ambalaymaps.com/v1/staticmap?size=600x400&path=color:0x0000ff|weight:5|9.03,38.74|9.04,38.75|9.05,38.76&key=YOUR_API_KEY" alt="Route map in Addis Ababa">`;
+
+  const jsExample = `// Function to generate a static map URL
+function getStaticMapUrl(options) {
+  const apiKey = 'YOUR_API_KEY';
+  const baseUrl = 'https://api.ambalaymaps.com/v1/staticmap';
+
+  // Default options
+  const defaultOptions = {
+    center: '9.03,38.74',
+    zoom: 12,
+    size: '600x400',
+    maptype: 'roadmap'
+  };
+
+  // Merge options
+  const mergedOptions = { ...defaultOptions, ...options, key: apiKey };
+
+  // Build query string
+  const queryParams = Object.entries(mergedOptions)
+    .map(([key, value]) => \`\${key}=\${encodeURIComponent(value)}\`)
+    .join('&');
+
+  return \`\${baseUrl}?\${queryParams}\`;
+}
+
+// Example: Generate a map with a marker
+const mapWithMarker = getStaticMapUrl({
+  center: '9.03,38.74',
+  zoom: 14,
+  size: '800x600',
+  markers: 'color:red|9.03,38.74'
+});
+
+// Example: Generate a map showing a route
+const routeMap = getStaticMapUrl({
+  size: '800x600',
+  path: 'color:0x0000ff|weight:5|9.03,38.74|9.04,38.75|9.05,38.76'
+});
+
+// Use in an image element
+document.getElementById('map-container').innerHTML = \`
+  <img src="\${mapWithMarker}" alt="Map with marker">
+\`;`;
+
+  const pythonExample = `import requests
+from PIL import Image
+from io import BytesIO
+
+def get_static_map(options, save_path=None):
+    """
+    Fetch a static map from AmbaLay Maps API
     
-    <h3 className="text-[#4d79ff] text-xl font-bold mb-4">Description</h3>
-    <p className="text-gray-400 leading-relaxed mb-4">
-      The Static Maps API returns a map image in response to an HTTP request. You can specify the location, zoom level, size, and add markers or paths. This is useful for displaying maps in contexts where JavaScript isn't available or for generating thumbnails.
-    </p>
-  </section>
-
-  {/* Query Parameters Table */}
-  <section className="mb-12">
-    <h3 className="text-[#4d79ff] text-xl font-bold mb-6">Query Parameters</h3>
-    <div className="overflow-x-auto rounded-xl border border-gray-800 shadow-2xl">
-      <table className="w-full text-left border-collapse">
-        <thead className="bg-[#1a1a1a] text-gray-400 text-sm uppercase tracking-wider">
-          <tr>
-            <th className="px-6 py-4 font-semibold border-b border-gray-800">Parameter</th>
-            <th className="px-6 py-4 font-semibold border-b border-gray-800">Type</th>
-            <th className="px-6 py-4 font-semibold border-b border-gray-800">Required</th>
-            <th className="px-6 py-4 font-semibold border-b border-gray-800">Description</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-800">
-          <tr>
-            <td className="px-6 py-4 font-mono text-[#8cff2e]">center</td>
-            <td className="px-6 py-4">string</td>
-            <td className="px-6 py-4">Yes¹</td>
-            <td className="px-6 py-4 text-sm text-gray-400">The center of the map, specified as "latitude,longitude" (e.g., "9.03,38.74") or a place name.</td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 font-mono text-[#8cff2e]">zoom</td>
-            <td className="px-6 py-4">number</td>
-            <td className="px-6 py-4">Yes¹</td>
-            <td className="px-6 py-4 text-sm text-gray-400">The zoom level (1-20). Higher values zoom in more.</td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 font-mono text-[#8cff2e]">size</td>
-            <td className="px-6 py-4">string</td>
-            <td className="px-6 py-4">Yes</td>
-            <td className="px-6 py-4 text-sm text-gray-400">The dimensions in pixels: "widthxheight" (e.g., "600x400"). Max size 2048x2048.</td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 font-mono text-[#8cff2e]">scale</td>
-            <td className="px-6 py-4">number</td>
-            <td className="px-6 py-4">No</td>
-            <td className="px-6 py-4 text-sm text-gray-400">Scale factor for high-res displays. Values: 1 (default) or 2.</td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 font-mono text-[#8cff2e]">format</td>
-            <td className="px-6 py-4">string</td>
-            <td className="px-6 py-4">No</td>
-            <td className="px-6 py-4 text-sm text-gray-400">Options: "png" (default), "png8", "jpg", "jpg-baseline", or "webp".</td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 font-mono text-[#8cff2e]">maptype</td>
-            <td className="px-6 py-4">string</td>
-            <td className="px-6 py-4">No</td>
-            <td className="px-6 py-4 text-sm text-gray-400">Options: "roadmap" (default), "satellite", "terrain", or "hybrid".</td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 font-mono text-[#8cff2e]">markers</td>
-            <td className="px-6 py-4">string</td>
-            <td className="px-6 py-4">No</td>
-            <td className="px-6 py-4 text-sm text-gray-400">Format: "color:red|label:A|9.03,38.74|9.05,38.76".</td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 font-mono text-[#8cff2e]">path</td>
-            <td className="px-6 py-4">string</td>
-            <td className="px-6 py-4">No</td>
-            <td className="px-6 py-4 text-sm text-gray-400">Format: "color:0x0000ff|weight:5|9.03,38.74|9.04,38.75|9.05,38.76".</td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 font-mono text-[#8cff2e]">key</td>
-            <td className="px-6 py-4">string</td>
-            <td className="px-6 py-4">Yes</td>
-            <td className="px-6 py-4 text-sm text-gray-400">Your unique API key.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p className="mt-4 text-xs text-gray-500 italic">
-      ¹ Either <code className="text-white">center</code> and <code className="text-white">zoom</code> must be specified, or the map must be fully specified using <code className="text-white">markers</code> or <code className="text-white">paths</code>.
-    </p>
-  </section>
-
-  {/* Examples Request */}
-  <section className="mb-12">
-    <h3 className="text-[#4d79ff] text-xl font-bold mb-4">Example Request</h3>
-    <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] overflow-hidden mb-4">
-      <div className="flex justify-between items-center px-4 py-2 bg-[#1a1a1a] border-b border-gray-800">
-        <span className="text-xs font-mono text-gray-500 uppercase">bash</span>
-        <button className="text-xs text-gray-500 hover:text-white transition-colors">Copy</button>
-      </div>
-      <div className="p-5 font-mono text-sm leading-relaxed whitespace-pre-wrap overflow-x-auto text-white">
-        <span className="text-[#ff79c6]">curl</span> -X GET "https://api.ambalaymaps.com/v1/staticmap?center=9.03,38.74&zoom=12&size=600x400&markers=color:red|9.03,38.74&key=<span className="text-[#8cff2e]">YOUR_API_KEY</span>" -o map.png
-      </div>
-    </div>
-    <p className="text-sm text-gray-500">This request will save a static map centered on Addis Ababa with a red marker at the center to a file named map.png.</p>
-  </section>
-
-  {/* HTML Usage */}
-  <section className="mb-12">
-    <h3 className="text-[#4d79ff] text-xl font-bold mb-4">Using Static Maps in HTML</h3>
-    <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] overflow-hidden">
-      <div className="flex justify-between items-center px-4 py-2 bg-[#1a1a1a] border-b border-gray-800">
-        <span className="text-xs font-mono text-gray-500 uppercase">html</span>
-        <button className="text-xs text-gray-500 hover:text-white transition-colors">Copy</button>
-      </div>
-      <div className="p-5 font-mono text-sm leading-relaxed text-white overflow-x-auto">
-        <span className="text-gray-500">{``}</span><br/>
-        {`<img src="https://api.ambalaymaps.com/v1/staticmap?center=9.03,38.74&zoom=12&size=600x400&key=`}<span className="text-[#8cff2e]">YOUR_API_KEY</span>{`" alt="Map of Addis Ababa">`}<br/><br/>
-
-        <span className="text-gray-500">{``}</span><br/>
-        {`<img src="https://api.ambalaymaps.com/v1/staticmap?center=9.03,38.74&zoom=12&size=600x400&markers=color:red|9.03,38.74&key=`}<span className="text-[#8cff2e]">YOUR_API_KEY</span>{`" alt="Map with marker">`}<br/><br/>
-
-        <span className="text-gray-500">{``}</span><br/>
-        {`<img src="https://api.ambalaymaps.com/v1/staticmap?size=600x400&path=color:0x0000ff|weight:5|9.03,38.74|9.04,38.75|9.05,38.76&key=`}<span className="text-[#8cff2e]">YOUR_API_KEY</span>{`" alt="Route map in Addis Ababa">`}
-      </div>
-    </div>
-  </section>
-
-  {/* Advanced Examples */}
-  <section className="mb-12">
-    <h3 className="text-[#4d79ff] text-2xl font-bold mb-6">Advanced Examples</h3>
+    Args:
+        options: Dictionary of query parameters
+        save_path: Optional file path to save the image
+    Returns:
+        PIL Image object
+    """
+    api_key = 'YOUR_API_KEY'
+    base_url = 'https://api.ambalaymaps.com/v1/staticmap'
     
-    <div className="mb-8">
-      <h4 className="text-white font-bold mb-3">Custom Map Styling</h4>
-      <p className="text-sm text-gray-400 mb-4">You can customize the appearance of your static maps by adding style parameters:</p>
-      <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] p-5 font-mono text-xs text-white overflow-x-auto leading-relaxed">
-        curl -X GET "https://api.ambalaymaps.com/v1/staticmap?center=9.03,38.74&zoom=12&size=600x400&maptype=roadmap&style=feature:water|element:geometry|color:0x0099dd&style=feature:road|element:geometry|color:0xeeeeee&key=YOUR_API_KEY" -o styled_map.png
-      </div>
-    </div>
+    # Default options
+    default_options = {
+        'center': '9.03,38.74',
+        'zoom': 12,
+        'size': '600x400',
+        'maptype': 'roadmap'
+    }
+    
+    # Merge options
+    merged_options = {**default_options, **options, 'key': api_key}
+    
+    # Get the image
+    response = requests.get(base_url, params=merged_options)
 
-    <div>
-      <h4 className="text-white font-bold mb-3">Satellite View</h4>
-      <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] p-5 font-mono text-xs text-white overflow-x-auto leading-relaxed">
-        curl -X GET "https://api.ambalaymaps.com/v1/staticmap?center=9.03,38.74&zoom=12&size=600x400&maptype=hybrid&key=YOUR_API_KEY" -o satellite_map.png
-      </div>
-    </div>
-  </section>
+    if response.status_code == 200:
+        image = Image.open(BytesIO(response.content))
+        
+        # Save to file if requested
+        if save_path:
+            image.save(save_path)
+            
+        return image
+    else:
+        print(f"Error: {response.status_code}")
+        return None
 
-  {/* Code Examples */}
-  <section className="mb-12">
-    <h3 className="text-[#4d79ff] text-2xl font-bold mb-8">Code Examples</h3>
+# Example: Get a map with a marker
+map_with_marker = get_static_map({
+    'center': '9.03,38.74',
+    'zoom': 14,
+    'markers': 'color:red|9.03,38.74'
+}, 'map_with_marker.png')
 
-    {/* JavaScript */}
-    <div className="mb-12">
-      <h4 className="text-white font-bold mb-4">JavaScript</h4>
-      <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] overflow-hidden shadow-2xl">
-        <div className="flex justify-between items-center px-4 py-2 bg-[#1a1a1a] border-b border-gray-800">
-          <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">javascript</span>
-          <button className="text-xs text-gray-500 hover:text-white transition-colors">Copy</button>
+# Example: Get a map showing a route
+route_map = get_static_map({
+    'path': 'color:0x0000ff|weight:5|9.03,38.74|9.04,38.75|9.05,38.76'
+}, 'route_map.png')
+
+print("Maps saved successfully!")`;
+
+  return (
+    <div className="bg-black text-gray-300 min-h-screen p-8 font-sans">
+      {/* Header Section */}
+      <header className="mb-10">
+        <h1 className="text-white text-5xl font-bold mb-4 tracking-tight">
+          Static Maps API
+        </h1>
+        <div className="h-[1px] bg-gray-800 w-full mb-6"></div>
+        <p className="text-gray-400 text-lg leading-relaxed">
+          Generate static map images with custom markers, paths, and styling for
+          embedding in websites or applications without using interactive maps.
+        </p>
+      </header>
+
+      {/* Endpoint Section */}
+      <section className="mb-12">
+        <h3 className="text-[#4d79ff] text-xl font-bold mb-4">Endpoint</h3>
+        <div className="bg-[#1a1a1a] px-4 py-2 inline-block rounded mb-6">
+          <code className="text-[#8cff2e]">GET /staticmap</code>
         </div>
-        <div className="p-5 font-mono text-sm leading-relaxed max-h-[500px] overflow-y-auto text-white">
-          <span className="text-gray-500">// Function to generate a static map URL</span><br/>
-          <span className="text-[#00d1ff]">function</span> <span className="text-[#8cff2e]">getStaticMapUrl</span>(options) {'{'}<br/>
-          <span className="pl-4">const apiKey = <span className="text-[#8cff2e]">'YOUR_API_KEY'</span>;</span><br/>
-          <span className="pl-4">const baseUrl = <span className="text-[#8cff2e]">'https://api.ambalaymaps.com/v1/staticmap'</span>;</span><br/><br/>
-          <span className="pl-4 text-gray-500">// Default options</span><br/>
-          <span className="pl-4">const defaultOptions = {'{'}</span><br/>
-          <span className="pl-8">center: <span className="text-[#8cff2e]">'9.03,38.74'</span>,</span><br/>
-          <span className="pl-8">zoom: <span className="text-[#bd93f9]">12</span>,</span><br/>
-          <span className="pl-8">size: <span className="text-[#8cff2e]">'600x400'</span>,</span><br/>
-          <span className="pl-8">maptype: <span className="text-[#8cff2e]">'roadmap'</span></span><br/>
-          <span className="pl-4">{'}'};</span><br/><br/>
-          <span className="pl-4">const mergedOptions = {'{'} ...defaultOptions, ...options, key: apiKey {'}'};</span><br/>
-          <span className="pl-4">const queryParams = Object.entries(mergedOptions)</span><br/>
-          <span className="pl-8">.map(([key, value]) => {`\``}{'${key}'}={'${encodeURIComponent(value)}'}{`\``})</span><br/>
-          <span className="pl-8">.join('&');</span><br/><br/>
-          <span className="pl-4 text-[#00d1ff]">return</span> {`\``}{'${baseUrl}'}?{'${queryParams}'}{`\``};<br/>
-          {'}'}<br/><br/>
-          <span className="text-gray-500">// Example: Generate a map with a marker</span><br/>
-          <span className="text-[#00d1ff]">const</span> mapWithMarker = getStaticMapUrl({'{'}<br/>
-          <span className="pl-4">center: <span className="text-[#8cff2e]">'9.03,38.74'</span>,</span><br/>
-          <span className="pl-4">zoom: <span className="text-[#bd93f9]">14</span>,</span><br/>
-          <span className="pl-4">size: <span className="text-[#8cff2e]">'800x600'</span>,</span><br/>
-          <span className="pl-4">markers: <span className="text-[#8cff2e]">'color:red|9.03,38.74'</span></span><br/>
-          {'}'});<br/><br/>
-          <span className="text-gray-500">// Use in an image element</span><br/>
-          document.getElementById(<span className="text-[#8cff2e]">'map-container'</span>).innerHTML = {`\``}<br/>
-          <span className="pl-4">{`<img src="`}</span>{`\${mapWithMarker}`}<span>{`" alt="Map with marker">`}</span><br/>
-          {`\``};
+
+        <h3 className="text-[#4d79ff] text-xl font-bold mb-4">Description</h3>
+        <p className="text-gray-400 leading-relaxed mb-4">
+          The Static Maps API returns a map image in response to an HTTP
+          request. You can specify the location, zoom level, size, and add
+          markers or paths. This is useful for displaying maps in contexts where
+          JavaScript isn't available or for generating thumbnails.
+        </p>
+      </section>
+
+      {/* Parameters Table Updated from Source */}
+      <section className="mb-12">
+        <h3 className="text-[#4d79ff] text-xl font-bold mb-6">
+          Query Parameters
+        </h3>
+        <div className="overflow-x-auto rounded-xl border border-gray-800">
+          <table className="w-full text-left border-collapse">
+            <thead className="bg-[#1a1a1a] text-gray-400 text-sm uppercase tracking-wider">
+              <tr>
+                <th className="px-6 py-4 font-semibold border-b border-gray-800">Parameter</th>
+                <th className="px-6 py-4 font-semibold border-b border-gray-800">Type</th>
+                <th className="px-6 py-4 font-semibold border-b border-gray-800">Required</th>
+                <th className="px-6 py-4 font-semibold border-b border-gray-800">Description</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-800">
+              <tr>
+                <td className="px-6 py-4 font-mono text-[#8cff2e]">center</td>
+                <td className="px-6 py-4">string</td>
+                <td className="px-6 py-4">Yes¹</td>
+                <td className="px-6 py-4 text-sm text-gray-400">The center of the map, specified as "latitude,longitude" (e.g., "9.03,38.74") or a place name.</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 font-mono text-[#8cff2e]">zoom</td>
+                <td className="px-6 py-4">number</td>
+                <td className="px-6 py-4">Yes¹</td>
+                <td className="px-6 py-4 text-sm text-gray-400">The zoom level of the map (1-20). Higher values zoom in more.</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 font-mono text-[#8cff2e]">size</td>
+                <td className="px-6 py-4">string</td>
+                <td className="px-6 py-4">Yes</td>
+                <td className="px-6 py-4 text-sm text-gray-400">The rectangular dimensions of the map image in pixels, specified as "widthxheight" (e.g., "600x400"). Maximum size is 2048x2048.</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 font-mono text-[#8cff2e]">scale</td>
+                <td className="px-6 py-4">number</td>
+                <td className="px-6 py-4">No</td>
+                <td className="px-6 py-4 text-sm text-gray-400">Scale factor for high-resolution displays. Values are 1 (default) or 2.</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 font-mono text-[#8cff2e]">format</td>
+                <td className="px-6 py-4">string</td>
+                <td className="px-6 py-4">No</td>
+                <td className="px-6 py-4 text-sm text-gray-400">The format of the resulting image. Options include "png" (default), "png8", "jpg", "jpg-baseline", or "webp".</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 font-mono text-[#8cff2e]">maptype</td>
+                <td className="px-6 py-4">string</td>
+                <td className="px-6 py-4">No</td>
+                <td className="px-6 py-4 text-sm text-gray-400">The map type. Options include "roadmap" (default), "satellite", "terrain", or "hybrid".</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 font-mono text-[#8cff2e]">markers</td>
+                <td className="px-6 py-4">string</td>
+                <td className="px-6 py-4">No</td>
+                <td className="px-6 py-4 text-sm text-gray-400">Markers to add to the map. Format: "color:red|label:A|9.03,38.74|9.05,38.76" or multiple markers parameters.</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 font-mono text-[#8cff2e]">path</td>
+                <td className="px-6 py-4">string</td>
+                <td className="px-6 py-4">No</td>
+                <td className="px-6 py-4 text-sm text-gray-400">Path to draw on the map. Format: "color:0x0000ff|weight:5|9.03,38.74|9.04,38.75|9.05,38.76".</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 font-mono text-[#8cff2e]">key</td>
+                <td className="px-6 py-4">string</td>
+                <td className="px-6 py-4">Yes</td>
+                <td className="px-6 py-4 text-sm text-gray-400">Your API key.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      </div>
+        <p className="mt-4 text-xs text-gray-500 italic">
+          ¹ Either <code className="text-white">center</code> and{" "}
+          <code className="text-white">zoom</code> must be specified, or the map
+          must be fully specified using <code className="text-white">markers</code>{" "}
+          or <code className="text-white">paths</code>.
+        </p>
+      </section>
+
+      {/* Example Request Section */}
+      <section className="mb-12">
+        <h3 className="text-[#4d79ff] text-xl font-bold mb-4">Example Request</h3>
+        <CodeBlock code={curlExample} language="bash" />
+        <p className="text-sm text-gray-500 mt-2">
+          This request will save a static map centered on Addis Ababa with a red
+          marker to a file named map.png.
+        </p>
+      </section>
+
+      {/* HTML Usage Section */}
+      <section className="mb-12">
+        <h3 className="text-[#4d79ff] text-xl font-bold mb-4">
+          Using Static Maps in HTML
+        </h3>
+        <CodeBlock code={htmlUsage} language="html" />
+      </section>
+
+      {/* Advanced Examples Section */}
+      <section className="mb-12">
+        <h3 className="text-[#4d79ff] text-2xl font-bold mb-6">
+          Advanced Examples
+        </h3>
+        <div className="space-y-8">
+          <div>
+            <h4 className="text-white font-bold mb-3">Custom Map Styling</h4>
+            <p className="text-sm text-gray-400 mb-4">
+              You can customize the appearance of your static maps by adding style parameters:
+            </p>
+            <CodeBlock code={styledMapExample} language="bash" />
+          </div>
+
+          <div>
+            <h4 className="text-white font-bold mb-3">Satellite View</h4>
+            <CodeBlock code={satelliteMapExample} language="bash" />
+          </div>
+        </div>
+      </section>
+
+      {/* Code Examples Section */}
+      <section className="mb-12">
+        <h3 className="text-[#4d79ff] text-2xl font-bold mb-8">Code Examples</h3>
+
+        <div className="mb-12">
+          <h4 className="text-white font-bold mb-4 text-lg">JavaScript</h4>
+          <CodeBlock code={jsExample} language="javascript" />
+        </div>
+
+        <div className="mb-12">
+          <h4 className="text-white font-bold mb-4 text-lg">Python</h4>
+          <CodeBlock code={pythonExample} language="python" />
+        </div>
+      </section>
+
+      
     </div>
-
-    {/* Python */}
-    <div className="mb-12">
-      <h4 className="text-white font-bold mb-4">Python</h4>
-      <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] overflow-hidden shadow-2xl">
-        <div className="flex justify-between items-center px-4 py-2 bg-[#1a1a1a] border-b border-gray-800">
-          <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">python</span>
-          <button className="text-xs text-gray-500 hover:text-white transition-colors">Copy</button>
-        </div>
-        <div className="p-5 font-mono text-sm leading-relaxed text-white">
-          <span className="text-[#00d1ff]">import</span> requests<br/>
-          <span className="text-[#00d1ff]">from</span> PIL <span className="text-[#00d1ff]">import</span> Image<br/>
-          <span className="text-[#00d1ff]">from</span> io <span className="text-[#00d1ff]">import</span> BytesIO<br/><br/>
-          <span className="text-[#00d1ff]">def</span> <span className="text-[#8cff2e]">get_static_map</span>(options, save_path=<span className="text-[#bd93f9]">None</span>):<br/>
-          <span className="pl-4">api_key = <span className="text-[#8cff2e]">'YOUR_API_KEY'</span></span><br/>
-          <span className="pl-4">base_url = <span className="text-[#8cff2e]">'https://api.ambalaymaps.com/v1/staticmap'</span></span><br/>
-          <span className="pl-4">merged_options = {'{'}**options, <span className="text-[#8cff2e]">'key'</span>: api_key{'}'}</span><br/>
-          <span className="pl-4 text-gray-500"># Fetch image</span><br/>
-          <span className="pl-4">response = requests.get(base_url, params=merged_options)</span><br/><br/>
-          <span className="pl-4 text-[#00d1ff]">if</span> response.status_code == <span className="text-[#bd93f9]">200</span>:<br/>
-          <span className="pl-8">image = Image.open(BytesIO(response.content))</span><br/>
-          <span className="pl-8 text-[#00d1ff]">if</span> save_path:<br/>
-          <span className="pl-12">image.save(save_path)</span><br/>
-          <span className="pl-8 text-[#00d1ff]">return</span> image<br/>
-          <span className="pl-4 text-[#00d1ff]">return</span> <span className="text-[#bd93f9]">None</span><br/><br/>
-          <span className="text-gray-500"># Example Usage</span><br/>
-          get_static_map({'{'}<br/>
-          <span className="pl-4 text-[#8cff2e]">'center'</span>: <span className="text-[#8cff2e]">'9.03,38.74'</span>,<br/>
-          <span className="pl-4 text-[#8cff2e]">'zoom'</span>: <span className="text-[#bd93f9]">14</span>,<br/>
-          <span className="pl-4 text-[#8cff2e]">'markers'</span>: <span className="text-[#8cff2e]">'color:red|9.03,38.74'</span><br/>
-          {'}'}, <span className="text-[#8cff2e]">'map.png'</span>)
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer className="mt-20 pt-10 border-t border-gray-900 pb-20">
-    <p className="text-sm text-gray-500 text-center tracking-wide uppercase">
-      AmbaLay Maps Static API · Reference Documentation
-    </p>
-  </footer>
-
-</div>
+  );
+}

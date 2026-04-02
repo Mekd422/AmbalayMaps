@@ -1,130 +1,172 @@
-{/* Main Page Container */}
-<div className="bg-black text-gray-300 min-h-screen font-sans">
+import CodeBlock from "../../Components/CodeBlock.tsx";
 
-  {/* Header Section */}
-  <header className="mb-10">
-    <h1 className="text-white text-5xl font-bold mb-4 tracking-tight !mt-0">
-      Matrix API
-    </h1>
-    <div className="h-[1px] bg-gray-800 w-full mb-6"></div>
-    <p className="text-gray-400 text-lg leading-relaxed">
-      <strong className="text-white">Purpose:</strong> Calculates travel distance and time for a matrix of origins and destinations.
-    </p>
-  </header>
+export default function MatrixAPI() {
+  const curlExample = `curl -G 'https://api.ambalaymaps.com/v1/matrix' \\
+  -H "x-api-key: YOUR_API_KEY" \\
+  --data-urlencode 'origins=40.73061,-73.935242|40.712776,-74.005974' \\
+  --data-urlencode 'destinations=40.758896,-73.98513|40.706192,-74.00916' \\
+  --data-urlencode 'mode=driving'`;
 
-  {/* Description & Endpoint */}
-  <section className="mb-12">
-    <h3 className="text-[#4d79ff] text-xl font-bold mb-4 !mt-0">Description</h3>
-    <p className="text-gray-400 leading-relaxed mb-6">
-      The Matrix API provides travel distance and time for a matrix of origins and destinations. The API returns information based on the recommended route between start and end points, as calculated by the AmbaLay Maps routing engine.
-    </p>
-    <div className="space-y-4">
-      <p className="font-mono bg-[#1a1a1a] px-3 py-1 inline-block rounded text-white">`GET / matrix`</p>
-      <p className="text-gray-400">
-        <strong className="text-white">Full URL:</strong> <span className="text-[#00d1ff]">https://api.ambalaymaps.com/v1/matrix</span>
-      </p>
+  const jsonResponse = `{
+  "status": 200,
+  "message": "ROUTE_OPTIMIZED",
+  "data": {
+    "trip": {
+      "legs": [
+        {
+          "maneuvers": [
+            {
+              "instruction": "Drive northwest on B11/Awash - Asseb highway.",
+              "time": 36.866,
+              "length": 0.45,
+              "begin_shape_index": 0,
+              "end_shape_index": 14
+            }
+          ],
+          "summary": {
+            "time": 1734.185,
+            "length": 18.95
+          },
+          "shape": "encoded_polyline_string"
+        }
+      ]
+    },
+    "summary": {
+      "time": 4731.821,
+      "length": 41.676
+    },
+    "units": "kilometers"
+  }
+}`;
+
+  return (
+    <div className="bg-black text-gray-300 min-h-screen p-8 font-sans">
+      {/* Header Section */}
+      <header className="mb-10">
+        <h1 className="text-white text-5xl font-bold mb-4 tracking-tight !mt-0">
+          Time–Distance Matrix API
+        </h1>
+        <div className="h-[1px] bg-gray-800 w-full mb-6"></div>
+        <p className="text-gray-400 text-lg leading-relaxed">
+          <strong className="text-white">Purpose:</strong> Calculate travel distance and time between multiple origins and destinations (e.g., depots → customers).
+        </p>
+      </header>
+
+      {/* Description & Endpoint */}
+      <section className="mb-12">
+        <h3 className="text-[#4d79ff] text-xl font-bold mb-4 !mt-0">Base URL & Authentication</h3>
+        <div className="space-y-4 mb-8">
+          <p className="text-gray-400">
+            <strong className="text-white">Base URL:</strong> <span className="text-[#00d1ff]">https://api.ambalaymaps.com/v1</span>
+          </p>
+          <p className="text-gray-400">
+            <strong className="text-white">Auth:</strong> <code className="text-[#8cff2e]">X-API-Key: YOUR_API_KEY</code>
+          </p>
+        </div>
+
+        <h3 className="text-[#4d79ff] text-xl font-bold mb-4">Modes & Units</h3>
+        <ul className="space-y-2 text-gray-400 mb-6">
+          <li><strong className="text-white">Modes:</strong> driving, bicycle, pedestrian (driving maps internally to Valhalla's auto profile).</li>
+          <li><strong className="text-white">Units:</strong> Distances are in kilometers. Durations: Matrix returns seconds. Optimized Route returns seconds.</li>
+        </ul>
+
+        <div className="bg-[#1a1a1a] px-4 py-2 inline-block rounded mb-4">
+          <code className="text-[#8cff2e]">GET /matrix</code>
+        </div>
+      </section>
+
+      {/* Query Parameters Table */}
+      <section className="mb-12">
+        <h3 className="text-[#4d79ff] text-xl font-bold mb-6">Required Query Parameters</h3>
+        <div className="overflow-x-auto rounded-xl border border-gray-800 shadow-2xl">
+          <table className="w-full text-left border-collapse">
+            <thead className="bg-[#1a1a1a] text-gray-400 text-sm uppercase tracking-wider">
+              <tr>
+                <th className="px-6 py-4 font-semibold border-b border-gray-800">Parameter</th>
+                <th className="px-6 py-4 font-semibold border-b border-gray-800">Type</th>
+                <th className="px-6 py-4 font-semibold border-b border-gray-800">Required</th>
+                <th className="px-6 py-4 font-semibold border-b border-gray-800">Description</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-800">
+              <tr>
+                <td className="px-6 py-4 font-mono text-[#8cff2e]">Origins</td>
+                <td className="px-6 py-4">string</td>
+                <td className="px-6 py-4">Yes</td>
+                <td className="px-6 py-4 text-sm text-gray-400">coordinates as lat,lon|lat,lon...</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 font-mono text-[#8cff2e]">destinations</td>
+                <td className="px-6 py-4">string</td>
+                <td className="px-6 py-4">Yes</td>
+                <td className="px-6 py-4 text-sm text-gray-400">coordinates as lat,lon|lat,lon...</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 font-mono text-[#8cff2e]">mode</td>
+                <td className="px-6 py-4">string</td>
+                <td className="px-6 py-4">Optional</td>
+                <td className="px-6 py-4 text-sm text-gray-400">driving | bicycle | pedestrian (default driving)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Formatting Rules */}
+        <div className="mt-8">
+          <h4 className="text-white font-bold mb-4 text-lg">Formatting rules:</h4>
+          <ul className="list-disc list-inside space-y-2 text-gray-400 ml-4">
+            <li>Use decimal degrees. Example: 8.9806,38.7578</li>
+            <li>Separate pairs with | (pipe)</li>
+            <li>No spaces inside pairs (use 8.9806,38.7578|8.9932,38.7831)</li>
+            <li>Validation strictly enforces the coordinate string format</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Example Request */}
+      <section className="mb-12">
+        <h3 className="text-[#4d79ff] text-xl font-bold mb-4">Examples Request</h3>
+        <CodeBlock code={curlExample} language="bash" />
+      </section>
+
+      {/* Example Response */}
+      <section className="mb-12">
+        <h3 className="text-[#4d79ff] text-xl font-bold mb-4">Examples Response</h3>
+        <CodeBlock code={jsonResponse} language="json" />
+      </section>
+
+      {/* JSON Response Fields Explanation */}
+      <section className="mb-12">
+        <h4 className="text-white font-bold mb-4 text-lg">Response Field Details:</h4>
+        <ul className="space-y-4 text-gray-400 leading-relaxed">
+          <li><code className="text-[#8cff2e]">trip.legs[].maneuvers[]</code> — step-by-step instructions with time (sec) and (km).</li>
+          <li><code className="text-[#8cff2e]">trip.legs[].summary</code> — per-leg summary (time sec, length km).</li>
+          <li><code className="text-[#8cff2e]">summary</code> — overall trip summary (time sec, length km).</li>
+          <li><code className="text-[#8cff2e]">units</code> — currently kilometers.</li>
+        </ul>
+      </section>
+
+      {/* Status Codes Section */}
+      <footer className="mt-20 pt-10 border-t border-gray-900 pb-20">
+        <h3 className="text-[#4d79ff] font-bold text-xl mb-6">Common Errors:</h3>
+        <div className="space-y-6 text-sm leading-relaxed text-gray-400">
+          <p>
+            <strong className="text-white">400 INVALID_QUERY_PARAMETERS:</strong> with details when query params fail validation or when upstream response is invalid (e.g., Invalid response format from Valhalla matrix service).
+          </p>
+          <p>
+            <strong className="text-white">500 MATRIX_CALCULATION_FAILED:</strong> generic server error; retry with backoff.
+          </p>
+
+          <h3 className="text-white font-bold text-lg mt-10 mb-4">Fix tips</h3>
+          <ul className="list-disc list-inside space-y-2 ml-4">
+            <li>Ensure no spaces inside coordinate pairs.</li>
+            <li>Validate latitude (-90...90) and longitude (-180...180) before sending.</li>
+            <li>Start small (few pairs), then scale.</li>
+          </ul>
+
+          
+        </div>
+      </footer>
     </div>
-  </section>
-
-  {/* Query Parameters Table */}
-  <section className="mb-12">
-    <h3 className="text-[#4d79ff] text-xl font-bold mb-6">Required Query Parameters</h3>
-    <div className="overflow-x-auto rounded-xl border border-gray-800 shadow-2xl">
-      <table className="w-full text-left border-collapse">
-        <thead className="bg-[#1a1a1a] text-gray-400 text-sm uppercase tracking-wider">
-          <tr>
-            <th className="px-6 py-4 font-semibold border-b border-gray-800">Parameter</th>
-            <th className="px-6 py-4 font-semibold border-b border-gray-800">Type</th>
-            <th className="px-6 py-4 font-semibold border-b border-gray-800">Required</th>
-            <th className="px-6 py-4 font-semibold border-b border-gray-800">Description</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-800">
-          <tr>
-            <td className="px-6 py-4 font-mono text-[#8cff2e]">origins</td>
-            <td className="px-6 py-4">string</td>
-            <td className="px-6 py-4">Yes</td>
-            <td className="px-6 py-4 text-sm text-gray-400">
-              One or more addresses or latitude/longitude coordinates from which to calculate distance and time. Separate multiple origins with a pipe character (<code className="text-white">|</code>).
-            </td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 font-mono text-[#8cff2e]">destinations</td>
-            <td className="px-6 py-4">string</td>
-            <td className="px-6 py-4">Yes</td>
-            <td className="px-6 py-4 text-sm text-gray-400">
-              One or more addresses or latitude/longitude coordinates to which to calculate distance and time. Separate multiple destinations with a pipe character (<code className="text-white">|</code>).
-            </td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 font-mono text-[#8cff2e]">key</td>
-            <td className="px-6 py-4">string</td>
-            <td className="px-6 py-4">Yes</td>
-            <td className="px-6 py-4 text-sm text-gray-400">Your unique AmbaLay Maps API key.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div className="mt-4 p-4 bg-[#111] rounded-lg border-l-4 border-[#4d79ff]">
-      <p className="text-sm text-gray-400">
-        <strong className="text-white">Note:</strong> For coordinates, use the format <code className="text-[#8cff2e]">lat,lon</code> (e.g., <code className="text-white">9.03,38.74</code>).
-      </p>
-    </div>
-  </section>
-
-  {/* Example Request */}
-  <section className="mb-12">
-    <h3 className="text-[#4d79ff] text-xl font-bold mb-3">Example Request</h3>
-    <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] overflow-hidden mb-4 shadow-2xl">
-      <div className="flex justify-between items-center px-4 py-2 bg-[#1a1a1a] border-b border-gray-800">
-        <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">bash</span>
-        <button className="text-xs text-gray-500 hover:text-white transition-colors">Copy</button>
-      </div>
-      <div className="p-5 font-mono text-sm leading-relaxed whitespace-pre-wrap text-white">
-        curl -X GET "https://api.ambalaymaps.com/v1/matrix?origins=9.03,38.74|9.05,38.76&destinations=9.02,38.75|9.04,38.77&key=<span className="text-[#8cff2e]">YOUR_API_KEY</span>"
-      </div>
-    </div>
-  </section>
-
-  {/* Example Response */}
-  <section className="mb-12">
-    <h3 className="text-[#4d79ff] text-xl font-bold mb-3">Example Response</h3>
-    <div className="rounded-xl border border-gray-800 bg-[#0a0a0a] overflow-hidden mb-8 shadow-2xl">
-      <div className="flex justify-between items-center px-4 py-2 bg-[#1a1a1a] border-b border-gray-800">
-        <span className="text-xs font-mono text-gray-500 uppercase tracking-widest">json</span>
-        <button className="text-xs text-gray-500 hover:text-white transition-colors">Copy</button>
-      </div>
-      <div className="p-5 font-mono text-sm leading-relaxed max-h-[500px] overflow-y-auto">
-        <div className="text-white">{`{`}</div>
-        <div className="pl-4"><span className="text-[#8cff2e]">"status"</span>: <span className="text-[#00d1ff]">"OK"</span>,</div>
-        <div className="pl-4"><span className="text-[#8cff2e]">"origin_addresses"</span>: [<span className="text-[#4d79ff]">"Addis Ababa, Ethiopia"</span>, <span className="text-[#4d79ff]">"Bole, Addis Ababa"</span>],</div>
-        <div className="pl-4"><span className="text-[#8cff2e]">"destination_addresses"</span>: [<span className="text-[#4d79ff]">"Kazanchis, Addis Ababa"</span>, <span className="text-[#4d79ff]">"Piazza, Addis Ababa"</span>],</div>
-        <div className="pl-4"><span className="text-[#8cff2e]">"rows"</span>: [</div>
-        <div className="pl-8 text-white">{`{`}</div>
-        <div className="pl-12"><span className="text-[#8cff2e]">"elements"</span>: [</div>
-        <div className="pl-16 text-white">{`{`}</div>
-        <div className="pl-20"><span className="text-[#8cff2e]">"status"</span>: <span className="text-[#00d1ff]">"OK"</span>,</div>
-        <div className="pl-20"><span className="text-[#8cff2e]">"duration"</span>: {'{'} <span className="text-[#8cff2e]">"value"</span>: <span className="text-[#bd93f9]">540</span>, <span className="text-[#8cff2e]">"text"</span>: <span className="text-[#4d79ff]">"9 mins"</span> {'}'},</div>
-        <div className="pl-20"><span className="text-[#8cff2e]">"distance"</span>: {'{'} <span className="text-[#8cff2e]">"value"</span>: <span className="text-[#bd93f9]">3500</span>, <span className="text-[#8cff2e]">"text"</span>: <span className="text-[#4d79ff]">"3.5 km"</span> {'}'}</div>
-        <div className="pl-16 text-white">{`}`}</div>
-        <div className="pl-12 text-white">]</div>
-        <div className="pl-8 text-white">{`}`}</div>
-        <div className="pl-4 text-white">]</div>
-        <div className="text-white">{`}`}</div>
-      </div>
-    </div>
-  </section>
-
-  {/* Status Codes Section */}
-  <footer className="mt-20 pt-10 border-t border-gray-900 pb-20">
-    <h3 className="text-[#4d79ff] font-bold text-xl mb-6">Status Codes</h3>
-    <div className="space-y-4 text-sm leading-relaxed">
-      <p><strong className="text-white">OK:</strong> The request was successful, and results are returned.</p>
-      <p><strong className="text-white">INVALID_REQUEST:</strong> The provided request was invalid (e.g., missing parameters).</p>
-      <p><strong className="text-white">MAX_ELEMENTS_EXCEEDED:</strong> The product of origins and destinations exceeds the per-query limit.</p>
-      <p><strong className="text-white">OVER_QUERY_LIMIT:</strong> The service has received too many requests from your API key in a short period.</p>
-      <p><strong className="text-white">REQUEST_DENIED:</strong> The service denied use of the Matrix API (check your API key and permissions).</p>
-    </div>
-  </footer>
-
-</div>
+  );
+}
